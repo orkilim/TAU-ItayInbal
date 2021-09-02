@@ -2,18 +2,24 @@ import React,{ useState } from 'react';
 import './App.css';
 import { JsonForms } from '@jsonforms/react';
 import { person } from '@jsonforms/examples';
+import Schema from './Components/SchemaComps/Schema.json'
+import UiSchema from './Components/SchemaComps/UiSchema.json'
 import {
   materialRenderers,
   materialCells,
 } from '@jsonforms/material-renderers';
 
-const schema = person.schema;
-const uischema = person.uischema;
-const initialData = person.data;
+//const schema = person.schema;
+//const uischema = person.uischema;
+//const initialData = person.data;
+
+const schema = Schema;
+const uischema = UiSchema;
+
 
 function App() {
   
-  const [data, setData] = useState(initialData);
+  const [data, setData] = useState();
 
   return (
     <div className='App'>

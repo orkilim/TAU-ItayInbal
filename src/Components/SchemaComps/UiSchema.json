@@ -1,0 +1,17 @@
+{
+    "type": "VerticalLayout",
+    "elements": [
+        {
+          "type": "Control",
+          "scope": "#/properties/first name"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/last name"
+        },
+        {
+          "type": "Control",
+          "scope": "#/properties/birthDate"
+        }
+      ]
+  }
