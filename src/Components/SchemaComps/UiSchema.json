@@ -1,5 +1,6 @@
 {
-    "type": "VerticalLayout",
+    "type": "Group",
+    "label":"our form",
     "elements": [
         {
           "type": "Control",
@@ -12,6 +13,10 @@
         {
           "type": "Control",
           "scope": "#/properties/birthDate"
+        },
+        {
+          "type":"Control",
+          "scope":"#/properties/country"
         }
       ]
   }

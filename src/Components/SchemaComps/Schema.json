@@ -13,6 +13,13 @@
       "birthDate": {
         "type": "string",
         "format": "date"
+      },
+      "country":{
+        "type":"string",
+        "enum":[
+          "Israel",
+          "other"
+        ]
       }
     },
     "required": [
