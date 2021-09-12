@@ -1,0 +1,11 @@
+{
+  "type": "VerticalLayout",
+  "label": "Itay and Inbal's project",
+  "elements": [
+    {
+      "type": "control",
+      "scope": "#/properties/name",
+      "label": "name"
+    }
+  ]
+}

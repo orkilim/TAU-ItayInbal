@@ -1,30 +1,9 @@
 {
-    "type": "object",
-    "properties": {
-      "first name": {
-        "type": "string",
-        "minLength": 2,
-        "description": "first name"
-      },
-      "last name":{
-        "type":"string",
-        "description":"last name"
-      },
-      "birthDate": {
-        "type": "string",
-        "format": "date"
-      },
-      "country":{
-        "type":"string",
-        "enum":[
-          "Israel",
-          "other"
-        ]
-      }
-    },
-    "required": [
-      "first name",
-      "last name",
-      "birthDate"
-    ]
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+      
+    }
   }
+}
