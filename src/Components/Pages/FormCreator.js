@@ -11,14 +11,14 @@ const FormCreator = () => {
   const [fieldName, setFieldName] = useState("")//the NAME of the attribute we want to add to the form
   const [textType, setTextType] = useState("")//when chosen text field- the type of the text field=free-text/date/dropdown menu
   const [minLabel, setMin] = useState("")//what word will appear above the minimum limitation field of number or free text
-  const [minVal,setMinVal]=useState(0)//minimum value of number or minimum length of text
+  const [minVal, setMinVal] = useState(0)//minimum value of number or minimum length of text
   const [maxLabel, setMax] = useState("")//what word will appear above the maximum limitation field of number or free text
-  const [maxVal,setMaxVal]=useState(0)//maximum value of number or maximum length of text
+  const [maxVal, setMaxVal] = useState(0)//maximum value of number or maximum length of text
   const [dropdownFieldsValues, setDropdownFieldsValues] = useState([{ value_name: "" }])//after we chose text->dropdown menu: which values can we choose from it
-  const [label,setLabel]=useState("invisible")//a label for the second dropdown (text-type)
-  const [dataInput,setDataInput]=useState("invisible")//className for data inputs
-  const [valuesForDropdownClassName,setvaluesForDropdownClassName]=useState("invisible")//a state variable to change the class name of the text->dropdown values
-  const [textTypeDropdown,setTextTypeDropdown]=useState("invisible")//classname state variable
+  const [label, setLabel] = useState("invisible")//a label for the second dropdown (text-type)
+  const [dataInput, setDataInput] = useState("invisible")//className for data inputs
+  const [valuesForDropdownClassName, setvaluesForDropdownClassName] = useState("invisible")//a state variable to change the class name of the text->dropdown values
+  const [textTypeDropdown, setTextTypeDropdown] = useState("invisible")//classname state variable
 
   const type_options = ["Text", "Number", "Boolean"]//options for first dropdown
 
@@ -126,18 +126,21 @@ const FormCreator = () => {
             options={["Free-Text", "Date", "Choice Menu (Dropdown)"]}
             onChange={(data) => {
               setTextType(data.value)
-              if(data.value!="Choice Menu (Dropdown)")
-              {
+              if (data.value != "Choice Menu (Dropdown)") {
+
                 setvaluesForDropdownClassName("invisible")
-                if(data.value=="Date")
-                {
+                if (data.value == "Date") {
                   setDataInput("invisible")
+                  setMin("invisible")
+                  setMax("invisible")
                 }
-                else{
+                else {
                   setDataInput("data-input")
                 }
               }
-              else{
+              else {
+                setMin("invisible")
+                setMax("invisible")
                 setvaluesForDropdownClassName("values-for-dropdown")
                 setDataInput("invisible")
               }
@@ -146,14 +149,14 @@ const FormCreator = () => {
             value={textType}
           />
           <label className={minLabel} >{minLabel}</label>
-          <input  className={dataInput} type="number" onChange={(e)=>{setMinVal(e.target.value)}} ></input>
+          <input className={dataInput} type="number" onChange={(e) => { setMinVal(e.target.value) }} ></input>
           <label className={maxLabel} >{maxLabel}</label>
-          <input  className={dataInput} type="number" onChange={(e)=>{setMaxVal(e.target.value)}} ></input>
+          <input className={dataInput} type="number" onChange={(e) => { setMaxVal(e.target.value) }} ></input>
         </div>
         <div className={valuesForDropdownClassName}>
           {
             dropdownFieldsValues.map((element, index) => {
-              return( <div key={index}>
+              return (<div key={index}>
                 <label>Value Name:</label>
                 <input type="text" name="value_name" value={element.value_name || ""} onChange={(e) => handleDropdownChange(index, e)} />
                 {
@@ -175,14 +178,15 @@ const FormCreator = () => {
 
   //the method that adds the fields
   const addDataFields = () => {
-    setFormValues([...formValues, addRequestedDataField()])
+    //setFormValues([...formValues, addRequestedDataField()])
+    addRequestedDataField()
   }
 
   //#endregion
 
   return (
     <form onSubmit={handleSubmit}>
-      <h2>Please Enter Resercher's info:</h2>
+      <h2>Please Enter Researcher's info:</h2>
       {formValues.map((element, index) => (
         <div className="form-inline" key={index}>
           <label>Name</label>
