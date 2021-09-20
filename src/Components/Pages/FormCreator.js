@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 //import Dropdown from 'react-dropdown';
 import '../CSSfiles/Formcreator.css'
 import Dropdown from 'react-dropdown';
+import DataField from '../MyComponents/DataField'
 
 const FormCreator = () => {
   const [formValues, setFormValues] = useState([{ name: "", email: "" }])//the fields of the form the include name and email
@@ -210,9 +211,7 @@ const FormCreator = () => {
       </div>
       <br />
       <div className="dropdown-section">
-        {
-          addRequestedDataField()
-        }
+        <DataField/>
         <br />
         <button className="button add" type="button" onClick={() => addDataFields()}>Add Data Fields</button>
       </div>
