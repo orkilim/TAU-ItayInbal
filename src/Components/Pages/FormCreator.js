@@ -48,13 +48,24 @@ const FormCreator = () => {
   //the method that adds the fields
   const addDataFields = () => {
     setDataFields([...dataFields, <DataField />])
-    setDataFieldsValues([...dataFields,{field_type:"",field_name:"",text_type:"",min_val:-1,max_val:-1,dropdown_fields_values:[]}])
+    setDataFieldsValues([...dataFieldsValues,{field_type:"",field_name:"",text_type:"",min_val:-1,max_val:-1,dropdown_fields_values:[]}])
   }
 
   //#endregion
 
-  const handleCallback = (childData) => {
-    console.log("this is childData: "+JSON.stringify(childData))
+  const handleCallback = (childData,index) => {
+    let newValues=[...dataFieldsValues]
+    const temp_obj={
+      field_type:childData.field_type,
+      field_name:childData.field_name,
+      text_type:childData.text_type,
+      min_val:childData.min_val,
+      max_val:childData.max_val,
+      dropdown_fields_values:childData.dropdown_menu_values
+    }
+    newValues[index] = temp_obj;
+    setDataFieldsValues(newValues);
+    console.log(dataFieldsValues)
   }
 
   return (
@@ -86,7 +97,7 @@ const FormCreator = () => {
         {
           dataFields.map((element, index) => {
             return (<div key={index}>
-              <DataField parentCallback={handleCallback} />
+              <DataField parentCallback={handleCallback} index={index} />
               {
                 index ?
                   <button type="button" className="data-field-remove" onClick={() => removeDataField(index)}>Remove</button>

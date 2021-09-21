@@ -23,18 +23,18 @@ const DataField=(props)=>{
         const myState={
             "field_name":fieldName,
             "text_type":textType,
-            "main_choice":dropdownValue,
+            "field_type":dropdownValue,
             "min_val":minVal,
             "max_val":maxVal,
             "dropdown_menu_values":dropdownFieldsValues,
         }
-        props.parentCallback(myState);
+        props.parentCallback(myState,props.index);
         //event.preventDefault();
     }
 
 useEffect(()=>{
     sendChildData()
-})
+},[dropdownValue,fieldName,textType,minVal,maxVal,dropdownFieldsValues])
 
 //#region Methods
 const handleDropdownChange = (i, e) => {
