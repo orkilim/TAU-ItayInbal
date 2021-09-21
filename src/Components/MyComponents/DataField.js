@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import '../CSSfiles/Formcreator.css'
 import Dropdown from 'react-dropdown';
 
-const DataField=()=>{
+const DataField=(props)=>{
 
     const [dropdownValue, setDropdownValue] = useState("")//the value of the FIRST dropdown=text/number/boolean
     const [fieldName, setFieldName] = useState("")//the NAME of the attribute we want to add to the form
@@ -19,7 +19,22 @@ const DataField=()=>{
   
     const type_options = ["Text", "Number", "Boolean"]//options for first dropdown
 
+    const sendChildData = (event) => {
+        const myState={
+            "field_name":fieldName,
+            "text_type":textType,
+            "main_choice":dropdownValue,
+            "min_val":minVal,
+            "max_val":maxVal,
+            "dropdown_menu_values":dropdownFieldsValues,
+        }
+        props.parentCallback(myState);
+        //event.preventDefault();
+    }
 
+useEffect(()=>{
+    sendChildData()
+})
 
 //#region Methods
 const handleDropdownChange = (i, e) => {
@@ -44,7 +59,7 @@ const handleDropdownChange = (i, e) => {
 return (
     <div>
       <div>
-        <input className="dataInput" onChange={(e) => { setFieldName(e.target.value) }} placeholder="Field Name:" type="text" ></input>
+        <input className="dataInput" required={true} onChange={(e) => { setFieldName(e.target.value) }} placeholder="Field Name:" type="text" ></input>
         <br />
         <label>Choose Field Type:▼</label>
         <Dropdown
