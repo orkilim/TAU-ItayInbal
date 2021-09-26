@@ -13,6 +13,7 @@ const MainRouter=()=>{
             
             
             <Switch>
+
               <Route exact path="/">
                 <Home />
               </Route>
