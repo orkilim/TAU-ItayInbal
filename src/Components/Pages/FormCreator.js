@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import '../CSSfiles/Formcreator.css'
 import DataField from '../MyComponents/DataField'
@@ -14,7 +14,9 @@ const FormCreator = () => {
   const [formJSONs, setJSONS] = useState({})
   const [dataOfNewForm, setDataOfNewForm] = useState(null)
 
-
+  useEffect(() => {
+    console.log(JSON.stringify(dataFieldsValues))
+  })
 
   //#region Resercher's info methods
   const handleChange = (i, e) => {
@@ -45,6 +47,7 @@ const FormCreator = () => {
     newDataFieldsValues.splice(i, 1);
     setDataFields(newDataFields)
     setDataFieldsValues(newDataFieldsValues)
+
   }
 
   //the method that adds the fields
@@ -59,12 +62,20 @@ const FormCreator = () => {
   const handleCallback = (childData, index) => {
     let newValues = [...dataFieldsValues]
     const temp_obj = {
+      //values
       field_type: childData.field_type,
       field_name: childData.field_name,
       text_type: childData.text_type,
       min_val: childData.min_val,
       max_val: childData.max_val,
-      dropdown_fields_values: childData.dropdown_menu_values
+      dropdown_fields_values: childData.dropdown_menu_values,
+      //labels
+      max_label: childData.max_label,
+      min_label: childData.min_label,
+      text_type_label: childData.text_type_label,
+      max_min_input_label_className: childData.max_min_input_label_className,
+      text_type_dropdown_className: childData.text_type_dropdown_className,
+      values_for_dropdown_className: childData.values_for_dropdown_className
     }
     newValues[index] = temp_obj;
     setDataFieldsValues(newValues);
@@ -108,7 +119,7 @@ const FormCreator = () => {
         {formValues.map((element, index) => (
           <div className="form-inline" key={index}>
             <label>Name</label>
-            <input type="text" name="name" value={element.name || ""} onChange={e => handleChange(index, e)} />
+            <input type="text" name="name" /*required={true}*/ value={element.name || ""} onChange={e => handleChange(index, e)} />
             <label>Email</label>
             <input type="text" name="email" value={element.email || ""} onChange={e => handleChange(index, e)} />
             {
@@ -131,7 +142,7 @@ const FormCreator = () => {
           {
             dataFields.map((element, index) => {
               return (<div key={index}>
-                <DataField parentCallback={handleCallback} index={index} />
+                <DataField className="data-field" parentCallback={handleCallback} data={dataFieldsValues[index]} index={index} />
                 {
                   index ?
                     <button type="button" className="data-field-remove" onClick={() => removeDataField(index)}>Remove</button>
@@ -141,17 +152,19 @@ const FormCreator = () => {
             })
           }
           <br />
-          <button className="button add" type="button" onClick={() => addDataFields()}>Add Data Fields</button>
+
         </div>
-        <button className="button_submit" type="submit" onClick={() => {
-        }}>Create Form</button>
+        <div className="end_buttons_div">
+          <button className="button_add" type="button" onClick={() => addDataFields()}>Add Data Fields</button>
+          <button className="button_submit" type="submit" onClick={() => {
+          }}>Create Form</button>
+        </div>
       </form>
     )
   }
 
   const showCreatedForm = () => {
     //const myJSONs = JSON.parse(formJSONs)
-    console.log(formJSONs)
     return (
       <div>
         <JsonForms
