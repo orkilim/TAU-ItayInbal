@@ -2,20 +2,22 @@ import React, { useEffect, useState } from 'react'
 import '../CSSfiles/Formcreator.css'
 import Dropdown from 'react-dropdown';
 
+
 const DataField = (props) => {
 
-  const [dropdownValue, setDropdownValue] = useState("")//the value of the FIRST dropdown=text/number/boolean
-  const [fieldName, setFieldName] = useState("")//the NAME of the attribute we want to add to the form
-  const [textType, setTextType] = useState("")//when chosen text field- the type of the text field=free-text/date/dropdown menu
-  const [minLabel, setMin] = useState("")//what word will appear above the minimum limitation field of number or free text
-  const [minVal, setMinVal] = useState("")//minimum value of number or minimum length of text
-  const [maxLabel, setMax] = useState("")//what word will appear above the maximum limitation field of number or free text
-  const [maxVal, setMaxVal] = useState("")//maximum value of number or maximum length of text
-  const [dropdownFieldsValues, setDropdownFieldsValues] = useState([{ value_name: "" }])//after we chose text->dropdown menu: which values can we choose from it
-  const [label, setLabel] = useState("invisible")//a label for the second dropdown (text-type)
-  const [dataInput, setDataInput] = useState("invisible")//className for data inputs
-  const [valuesForDropdownClassName, setvaluesForDropdownClassName] = useState("invisible")//a state variable to change the class name of the text->dropdown values
-  const [textTypeDropdown, setTextTypeDropdown] = useState("invisible")//classname state variable
+  const [id,setId]=useState(props.data.id)
+  const [dropdownValue, setDropdownValue] = useState(props.data.field_type)//the value of the FIRST dropdown=text/number/boolean
+  const [fieldName, setFieldName] = useState(props.data.field_name)//the NAME of the attribute we want to add to the form
+  const [textType, setTextType] = useState(props.data.text_type)//when chosen text field- the type of the text field=free-text/date/dropdown menu
+  const [minLabel, setMin] = useState(props.data.min_label)//what word will appear above the minimum limitation field of number or free text
+  const [minVal, setMinVal] = useState(props.data.min_val)//minimum value of number or minimum length of text
+  const [maxLabel, setMax] = useState(props.data.max_label)//what word will appear above the maximum limitation field of number or free text
+  const [maxVal, setMaxVal] = useState(props.data.max_val)//maximum value of number or maximum length of text
+  const [dropdownFieldsValues, setDropdownFieldsValues] = useState(props.data.dropdown_fields_values)//after we chose text->dropdown menu: which values can we choose from it
+  const [label, setLabel] = useState(props.data.text_type_label)//a label for the second dropdown (text-type)
+  const [dataInput, setDataInput] = useState(props.data.max_min_input_label_className)//className for data inputs
+  const [valuesForDropdownClassName, setvaluesForDropdownClassName] = useState(props.data.values_for_dropdown_className)//a state variable to change the class name of the text->dropdown values
+  const [textTypeDropdown, setTextTypeDropdown] = useState(props.data.text_type_dropdown_className)//classname state variable
 
   const type_options = ["Text", "Number", "Boolean"]//options for first dropdown
 
@@ -23,29 +25,66 @@ const DataField = (props) => {
   const sendChildData = (event) => {
     const myState = {
       //values
+      "id":id,
       "field_name": fieldName,
       "text_type": textType,
       "field_type": dropdownValue,
       "min_val": minVal,
       "max_val": maxVal,
-      "dropdown_menu_values": dropdownFieldsValues,
+      "dropdown_fields_values": dropdownFieldsValues,
       //labels
-      "max_label":maxLabel,
-      "min_label":minLabel,
-      "text_type_label":label,
-      "max_min_input_label_className":dataInput,
-      "text_type_dropdown_className":textTypeDropdown,
-      "values_for_dropdown_className":valuesForDropdownClassName
+      "max_label": maxLabel,
+      "min_label": minLabel,
+      "text_type_label": label,
+      "max_min_input_label_className": dataInput,
+      "text_type_dropdown_className": textTypeDropdown,
+      "values_for_dropdown_className": valuesForDropdownClassName
 
     }
     props.parentCallback(myState, props.index);
     //event.preventDefault();
   }
 
+  useEffect(()=>{
+    console.log(props.data)
+  },[])
+  
+  /*const sendChildDataFromProps=()=>{
+    const obj={
+      "field_name":props.data.field_name
+    }
+    props.parentCallback(obj,props.index)
+  }*/
+
+  /*useEffect(()=>{
+    sendChildDataFromProps()
+  },[props.data.field_name])*/
+  
   //on change of the data field so that the form creator can receive the changes
   useEffect(() => {
     sendChildData()
   }, [dropdownValue, fieldName, textType, minVal, maxVal, dropdownFieldsValues])
+
+  console.log("props.data.id: ",props.data.id)
+  console.log("props.data: ",props.data)
+
+  /*useEffect(()=>{
+    
+      setFieldName(props.data.field_name)
+      setTextType(props.data.text_type)
+      setDropdownValue(props.data.field_type)
+      setMaxVal(props.data.max_val)
+      setMinVal(props.data.min_val)
+      setDropdownFieldsValues(props.data.dropdown_menu_values)
+      setMax(props.data.max_label)
+      setMin(props.data.min_label)
+      setDataInput(props.data.max_min_input_label_className)
+      setLabel(props.data.text_type_label)
+      setTextTypeDropdown(props.data.text_type_dropdown_className)
+      setvaluesForDropdownClassName(props.data.values_for_dropdown_className)
+    
+  })*/
+
 
   //initial state of the data field
   /*useEffect(()=>{
@@ -87,7 +126,6 @@ const DataField = (props) => {
   const addValueField = () => {
     setDropdownFieldsValues([...dropdownFieldsValues, { value_name: "" }])
   }
-
 
   //#endregion
 
@@ -176,8 +214,8 @@ const DataField = (props) => {
           value={props.data.text_type}
         />
         <label className={props.data.min_label} >{props.data.min_label}</label>
-          <input className={props.data.max_min_input_label_className} value={props.data.min_val} type="number" onChange={(e) => { setMinVal(e.target.value) }} ></input>
-        
+        <input className={props.data.max_min_input_label_className} value={props.data.min_val} type="number" onChange={(e) => { setMinVal(e.target.value) }} ></input>
+
         <label className={props.data.max_label} >{props.data.max_label}</label>
         <input className={props.data.max_min_input_label_className} value={props.data.max_val} type="number" onChange={(e) => { setMaxVal(e.target.value) }} ></input>
       </div>

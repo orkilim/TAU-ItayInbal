@@ -5,18 +5,16 @@ import DataField from '../MyComponents/DataField'
 import { BrowserRouter as Router, Switch, Route, Link, Redirect } from "react-router-dom";
 import { JsonForms } from '@jsonforms/react';
 import { materialRenderers, materialCells, } from '@jsonforms/material-renderers';
+import { v4 as uuidv4 } from 'uuid';
 
 const FormCreator = () => {
   const [formValues, setFormValues] = useState([{ name: "", email: "" }])//the fields of the form the include name and email
   const [dataFields, setDataFields] = useState([<DataField />])//fields of the form the dictates the type of the field (text/number/boolean and what's in it)
-  const [dataFieldsValues, setDataFieldsValues] = useState([{ field_type: "", field_name: "", text_type: "", min_val: -1, max_val: -1, dropdown_fields_values: [] }])
+  const [dataFieldsValues, setDataFieldsValues] = useState([{id:uuidv4(), field_type: "", field_name: "", text_type: "", min_val: "", max_val: "", dropdown_fields_values: [],max_label:"",min_label:"",text_type_label:"invisible",max_min_input_label_className:"invisible",text_type_dropdown_className:"invisible",values_for_dropdown_className:"invisible" }])
   const [isStillCreating, setIsStillCreating] = useState("entering values")//a state var to indicate at which stages of the form creation we are at right now
   const [formJSONs, setJSONS] = useState({})
   const [dataOfNewForm, setDataOfNewForm] = useState(null)
-
-  useEffect(() => {
-    console.log(JSON.stringify(dataFieldsValues))
-  })
+  
 
   //#region Resercher's info methods
   const handleChange = (i, e) => {
@@ -47,13 +45,14 @@ const FormCreator = () => {
     newDataFieldsValues.splice(i, 1);
     setDataFields(newDataFields)
     setDataFieldsValues(newDataFieldsValues)
-
+    
   }
 
   //the method that adds the fields
   const addDataFields = () => {
-    setDataFields([...dataFields, <DataField />])
-    setDataFieldsValues([...dataFieldsValues, { field_type: "", field_name: "", text_type: "", min_val: -1, max_val: -1, dropdown_fields_values: [] }])
+    setDataFields([...dataFields, <DataField  />])
+    setDataFieldsValues([...dataFieldsValues, {id:uuidv4(), field_type: "", field_name: "", text_type: "", min_val: "", max_val: "", dropdown_fields_values: [],max_label:"",min_label:"",text_type_label:"invisible",max_min_input_label_className:"invisible",text_type_dropdown_className:"invisible",values_for_dropdown_className:"invisible"}])
+    
   }
 
   //#endregion
@@ -63,12 +62,13 @@ const FormCreator = () => {
     let newValues = [...dataFieldsValues]
     const temp_obj = {
       //values
+      id:childData.id,
       field_type: childData.field_type,
       field_name: childData.field_name,
       text_type: childData.text_type,
       min_val: childData.min_val,
       max_val: childData.max_val,
-      dropdown_fields_values: childData.dropdown_menu_values,
+      dropdown_fields_values: childData.dropdown_fields_values,
       //labels
       max_label: childData.max_label,
       min_label: childData.min_label,
@@ -80,6 +80,10 @@ const FormCreator = () => {
     newValues[index] = temp_obj;
     setDataFieldsValues(newValues);
   }
+
+  useEffect(()=>{
+    console.log(JSON.stringify(dataFieldsValues))
+  })
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -140,9 +144,10 @@ const FormCreator = () => {
         <br />
         <div className="dropdown-section">
           {
-            dataFields.map((element, index) => {
+            dataFieldsValues.map((element, index) => {
+              //console.log("this is my element: "+JSON.stringify(element))
               return (<div key={index}>
-                <DataField className="data-field" parentCallback={handleCallback} data={dataFieldsValues[index]} index={index} />
+                <DataField className="data-field" parentCallback={handleCallback} key={dataFieldsValues[index].id} data={dataFieldsValues[index]} index={index} />
                 {
                   index ?
                     <button type="button" className="data-field-remove" onClick={() => removeDataField(index)}>Remove</button>
