@@ -45,71 +45,13 @@ const DataField = (props) => {
     //event.preventDefault();
   }
 
-  useEffect(()=>{
-    console.log(props.data)
-  },[])
   
-  /*const sendChildDataFromProps=()=>{
-    const obj={
-      "field_name":props.data.field_name
-    }
-    props.parentCallback(obj,props.index)
-  }*/
-
-  /*useEffect(()=>{
-    sendChildDataFromProps()
-  },[props.data.field_name])*/
   
   //on change of the data field so that the form creator can receive the changes
   useEffect(() => {
     sendChildData()
   }, [dropdownValue, fieldName, textType, minVal, maxVal, dropdownFieldsValues])
-
-  console.log("props.data.id: ",props.data.id)
-  console.log("props.data: ",props.data)
-
-  /*useEffect(()=>{
-    
-      setFieldName(props.data.field_name)
-      setTextType(props.data.text_type)
-      setDropdownValue(props.data.field_type)
-      setMaxVal(props.data.max_val)
-      setMinVal(props.data.min_val)
-      setDropdownFieldsValues(props.data.dropdown_menu_values)
-      setMax(props.data.max_label)
-      setMin(props.data.min_label)
-      setDataInput(props.data.max_min_input_label_className)
-      setLabel(props.data.text_type_label)
-      setTextTypeDropdown(props.data.text_type_dropdown_className)
-      setvaluesForDropdownClassName(props.data.values_for_dropdown_className)
-    
-  })*/
-
-
-  //initial state of the data field
-  /*useEffect(()=>{
-    const my_start_labels = {
-      //labels
-      "max_label":maxLabel,
-      "min_label":minLabel,
-      "text_type_label":label,
-      "max_min_input_label_className":dataInput,
-      "text_type_dropdown_className":textTypeDropdown,
-      "values_for_dropdown_className":valuesForDropdownClassName
-
-    }
-    props.parentCallback(my_start_labels, props.index);
-  },[])*/
-
-  /*const updateDataField=(obj)=>{
-    setDropdownValue(obj.dropdownValue)
-    setFieldName(obj.field_name)
-    setMinVal(obj.minVal)
-    setMaxVal(obj.maxVal)
-    setTextType(obj.textType)
-    setDropdownFieldsValues(obj.dropdownFieldsValues)
-  }*/
-
+  
   //#region Methods
   const handleDropdownChange = (i, e) => {
     let newDropdownValues = [...dropdownFieldsValues];
@@ -136,6 +78,7 @@ const DataField = (props) => {
         <br />
         <label>Choose Field Type:▼</label>
         <Dropdown
+          required={true}
           className="dropdown"
           options={type_options}
           placeholder="field type"

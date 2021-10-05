@@ -9,7 +9,6 @@ import { v4 as uuidv4 } from 'uuid';
 
 const FormCreator = () => {
   const [formValues, setFormValues] = useState([{ name: "", email: "" }])//the fields of the form the include name and email
-  const [dataFields, setDataFields] = useState([<DataField />])//fields of the form the dictates the type of the field (text/number/boolean and what's in it)
   const [dataFieldsValues, setDataFieldsValues] = useState([{id:uuidv4(), field_type: "", field_name: "", text_type: "", min_val: "", max_val: "", dropdown_fields_values: [],max_label:"",min_label:"",text_type_label:"invisible",max_min_input_label_className:"invisible",text_type_dropdown_className:"invisible",values_for_dropdown_className:"invisible" }])
   const [isStillCreating, setIsStillCreating] = useState("entering values")//a state var to indicate at which stages of the form creation we are at right now
   const [formJSONs, setJSONS] = useState({})
@@ -39,18 +38,14 @@ const FormCreator = () => {
   //#region Data fields methods
 
   const removeDataField = (i) => {
-    let newDataFields = [...dataFields];
     let newDataFieldsValues = [...dataFieldsValues];
-    newDataFields.splice(i, 1);
     newDataFieldsValues.splice(i, 1);
-    setDataFields(newDataFields)
     setDataFieldsValues(newDataFieldsValues)
     
   }
 
   //the method that adds the fields
   const addDataFields = () => {
-    setDataFields([...dataFields, <DataField  />])
     setDataFieldsValues([...dataFieldsValues, {id:uuidv4(), field_type: "", field_name: "", text_type: "", min_val: "", max_val: "", dropdown_fields_values: [],max_label:"",min_label:"",text_type_label:"invisible",max_min_input_label_className:"invisible",text_type_dropdown_className:"invisible",values_for_dropdown_className:"invisible"}])
     
   }
@@ -91,6 +86,14 @@ const FormCreator = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    for(let i=0;i<dataFieldsValues.length;i++)
+    {
+      if(dataFieldsValues[i].field_type=="")
+      {
+        alert("One of you fields is empty: please enter type to field "+dataFieldsValues[i].field_name+" and re-create the form")
+        return
+      }
+    }
     axios.post('http://localhost:3030/route/addForm/', {
       contactInfo: formValues,
       dataFieldsValues: dataFieldsValues
@@ -127,7 +130,7 @@ const FormCreator = () => {
         {formValues.map((element, index) => (
           <div className="form-inline" key={index}>
             <label>Name</label>
-            <input type="text" name="name" /*required={true}*/ value={element.name || ""} onChange={e => handleChange(index, e)} />
+            <input type="text" name="name" required={true} value={element.name || ""} onChange={e => handleChange(index, e)} />
             <label>Email</label>
             <input type="text" name="email" value={element.email || ""} onChange={e => handleChange(index, e)} />
             {
@@ -178,6 +181,7 @@ const FormCreator = () => {
     return (
       <div>
         <JsonForms
+
           schema={formJSONs.schema}
           uischema={formJSONs.UI}
           renderers={materialRenderers}

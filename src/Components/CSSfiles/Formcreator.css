@@ -79,11 +79,13 @@
   padding-bottom: 5px;
   box-shadow: 0 3px 6px black;
   /*margin-bottom: 0.5cm;*/
+  transition: 0.5s;
   
 }
 
 .dropdown:hover{
   cursor: pointer;
+  background-color: lightgreen;
 }
 
 .invisible{

@@ -1,7 +1,27 @@
-.pages_list li{
-    text-decoration: none;
+  *{margin:0;padding:0;}
+
+.home{
+    /*background-color: blue;*/
+    align-content: center;
+    height: 100%;
 }
 
-.pages_list{
-    color: white;
+ul{
+    margin-top: 10%;
+    display: inline-block;
+    list-style-type:"";
+    /*background-color: red;*/
+    width: fit-content;
+    align-content:center;
+}
+
+.home-button{
+    background-image: linear-gradient(to bottom right, red, yellow);
+    width:2.5cm;
+    border-radius: 10px;
+}
+
+
+.home-button:hover{
+    cursor: pointer;
 }
