@@ -53,10 +53,18 @@
   
 }
 
+.data-field-with-buttons-wrapper{
+  justify-content: center;
+  /*background-color: blue;*/
+  align-content: flex-start;
+  width:fit-content;
+  margin-bottom: 1.5cm;
+}
+
 .datafield-wrapper{
   width: fit-content;
   /*background-color: green;*/
-  margin-bottom: 1cm;
+  margin-bottom: 0.2cm;
   clear: left;
 }
 

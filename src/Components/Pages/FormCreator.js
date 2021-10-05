@@ -55,6 +55,13 @@ const FormCreator = () => {
     
   }
 
+  const addDataFieldAfterIndex=(id)=>{
+    let newArray=[...dataFieldsValues]
+    const index=newArray.indexOf(id)
+    newArray.splice(index,0,{id:uuidv4(), field_type: "", field_name: "", text_type: "", min_val: "", max_val: "", dropdown_fields_values: [],max_label:"",min_label:"",text_type_label:"invisible",max_min_input_label_className:"invisible",text_type_dropdown_className:"invisible",values_for_dropdown_className:"invisible"})
+    setDataFieldsValues(newArray)
+  }
+
   //#endregion
 
   //a method to update the data from the data fields (the "children" components) to the form (the "parent" component)
@@ -81,9 +88,6 @@ const FormCreator = () => {
     setDataFieldsValues(newValues);
   }
 
-  useEffect(()=>{
-    console.log(JSON.stringify(dataFieldsValues))
-  })
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -146,8 +150,9 @@ const FormCreator = () => {
           {
             dataFieldsValues.map((element, index) => {
               //console.log("this is my element: "+JSON.stringify(element))
-              return (<div key={index}>
+              return (<div className="data-field-with-buttons-wrapper" key={index}>
                 <DataField className="data-field" parentCallback={handleCallback} key={dataFieldsValues[index].id} data={dataFieldsValues[index]} index={index} />
+                <button title="add field" type="button" onClick={()=>{addDataFieldAfterIndex(dataFieldsValues[index].id)}} >add field</button>
                 {
                   index ?
                     <button type="button" className="data-field-remove" onClick={() => removeDataField(index)}>Remove</button>
