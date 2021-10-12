@@ -126,7 +126,7 @@ const FormCreator = () => {
   const enterFormValues = () => {
     return (
       <form onSubmit={handleSubmit}>
-        <h2>Please Enter Researcher's info:</h2>
+        <h2>Please Enter Researchers' info:</h2>
         {formValues.map((element, index) => (
           <div className="form-inline" key={index}>
             <label>Name</label>

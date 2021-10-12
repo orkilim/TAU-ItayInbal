@@ -6,7 +6,7 @@ import '../CSSfiles/Home.css'
 const Home=({history})=>{
     return(
         <div className="home">
-            <h1 className="liads-lab-title" >Welcome to Liad Mudrick's Lab </h1>
+            <h1 className="liads-lab-title" >Welcome to Prof. Liad Mudrick's Lab </h1>
             <text>Home Page</text>
             <br/>
             <ul className="pages-list">
