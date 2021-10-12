@@ -3,6 +3,7 @@ import {BrowserRouter as Router,Switch,Route,Link} from "react-router-dom";
 import FormCreator from './FormCreator';
 import Home from './Home';
 import '../CSSfiles/Home.css'
+import ShowForms from './ShowForms'
 
 const MainRouter=()=>{
     
@@ -20,7 +21,9 @@ const MainRouter=()=>{
               <Route path="/create">
                 <FormCreator />
               </Route>
-              
+              <Route path="/show">
+                <ShowForms />
+              </Route>
             </Switch>
 
             

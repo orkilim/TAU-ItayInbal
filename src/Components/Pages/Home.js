@@ -13,7 +13,9 @@ const Home=({history})=>{
                 <li className="home-button">
                     <Link style={{textDecoration:"none",color:"black"}} to="/create">Form Creator</Link>
                 </li>
-
+                <li className="home-button">
+                    <Link style={{textDecoration:"none",color:"black"}} to="/show">Show Existing Forms</Link>
+                </li>
             </ul>
         </div>
     )
