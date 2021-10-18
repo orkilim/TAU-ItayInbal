@@ -7,7 +7,6 @@ import '../CSSfiles/Formcreator.css'
 //import { materialRenderers, materialCells, } from '@jsonforms/material-renderers';
 import { v4 as uuidv4 } from 'uuid';
 import Form from "@rjsf/core";
-import fs from 'fs'
 import jthf from 'json-to-html-form'
 import ReactDOMServer from "react-dom/server";
 
@@ -17,7 +16,12 @@ const FormCreatorV2 = ({ navigation }) => {
     const [UIschemaFile, setUISchemaFile] = useState("")
 
     const handleSubmit=(data)=>{
-        const html=jthf.getForm(data)
+        //const html=jthf.getForm(data)
+        const html=ReactDOMServer.renderToString(<Form
+            schema={schemaFile}
+            uiSchema={UIschemaFile}
+        />)
+        console.log(html)
         axios.post(`http://localhost:3030/route/createForm`,{
             path:"C:/Users/Or/Desktop/testing folder/testing1.html",
             html:html
@@ -92,7 +96,7 @@ const FormCreatorV2 = ({ navigation }) => {
     }
 
     //#endregion
-
+    
     return pageViews()
 };
 
