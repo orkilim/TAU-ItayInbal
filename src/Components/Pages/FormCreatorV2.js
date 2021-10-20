@@ -9,31 +9,35 @@ import { v4 as uuidv4 } from 'uuid';
 import Form from "@rjsf/core";
 import jthf from 'json-to-html-form'
 import ReactDOMServer from "react-dom/server";
+import fs from 'fs'
+import editJsonFile from 'edit-json-file';
+import path from 'path';
 
 const FormCreatorV2 = ({ navigation }) => {
 
     const [schemaFile, setSchemaFile] = useState("")
     const [UIschemaFile, setUISchemaFile] = useState("")
 
-    const handleSubmit=(data)=>{
-        //const html=jthf.getForm(data)
-        const html=ReactDOMServer.renderToString(<Form
+    const handleSubmit = () => {
+        const html = ReactDOMServer.renderToString(<Form
             schema={schemaFile}
             uiSchema={UIschemaFile}
         />)
         console.log(html)
-        axios.post(`http://localhost:3030/route/createForm`,{
-            path:"C:/Users/Or/Desktop/testing folder/testing1.html",
-            html:html
+        axios.post(`http://localhost:3030/route/createForm`, {
+            formPath: "C:/Users/Or/Desktop/testing folder",
+            answersPath: "C:/Users/Or/Desktop/testing folder",
+            html: html,
+            myJSON: Object.keys(schemaFile["properties"])
         })
-        .then((data)=>{
-            console.log(data)
-        })
-        .catch((err)=>{
-            if(err){
-                console.log("problem in handleSubmit in FormCreatorV2: ",err)
-            }
-        })
+            .then((data) => {
+                console.log(data)
+            })
+            .catch((err) => {
+                if (err) {
+                    console.log("problem in handleSubmit in FormCreatorV2: ", err)
+                }
+            })
     }
 
     //#region Different page renders- before and after file choices
@@ -48,15 +52,14 @@ const FormCreatorV2 = ({ navigation }) => {
     }
 
     const showForm = () => {
-
-
         return (
             <div className='wrapper'>
                 <Form
                     schema={schemaFile}
                     uiSchema={UIschemaFile}
-                    onSubmit={(data)=>{handleSubmit(data.formData)}}
                 />
+                <br />
+                <button title="Save Form" onClick={handleSubmit}>Save Form</button>
             </div>
         )
     }
@@ -69,7 +72,7 @@ const FormCreatorV2 = ({ navigation }) => {
                 <input type="file" title="Choose a Schema JSON file" onChange={(e) => {
                     e.target.files[0].text()
                         .then((data) => {
-                            data=JSON.parse(data)
+                            data = JSON.parse(data)
                             setSchemaFile(data)
                         })
                         .catch((error) => {
@@ -82,7 +85,7 @@ const FormCreatorV2 = ({ navigation }) => {
                 <input type="file" title="Choose a UISchema JSON file" onChange={(e) => {
                     e.target.files[0].text()
                         .then((data) => {
-                            data=JSON.parse(data)
+                            data = JSON.parse(data)
                             setUISchemaFile(data)
                         })
                         .catch((error) => {
@@ -96,7 +99,7 @@ const FormCreatorV2 = ({ navigation }) => {
     }
 
     //#endregion
-    
+
     return pageViews()
 };
 
