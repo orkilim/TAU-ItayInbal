@@ -72,6 +72,7 @@ const FormCreatorV2 = ({ navigation }) => {
                 <input type="file" title="Choose a Schema JSON file" onChange={(e) => {
                     e.target.files[0].text()
                         .then((data) => {
+                            debugger;
                             data = JSON.parse(data)
                             setSchemaFile(data)
                         })
@@ -85,6 +86,7 @@ const FormCreatorV2 = ({ navigation }) => {
                 <input type="file" title="Choose a UISchema JSON file" onChange={(e) => {
                     e.target.files[0].text()
                         .then((data) => {
+                            debugger;
                             data = JSON.parse(data)
                             setUISchemaFile(data)
                         })
