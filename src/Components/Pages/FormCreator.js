@@ -15,17 +15,17 @@ const FormCreator = () => {
     const [name, setName] = useState("")
     const [link, setLink] = useState("")
 
-    useEffect(() => {
+    /*useEffect(() => {
         console.log("schema: ", schemaFile)
         console.log("ui: ", UIschemaFile)
-    }, [schemaFile, UIschemaFile])
+    }, [schemaFile, UIschemaFile])*/
 
     const handleSubmit = () => {
         try {
             axios.post(`http://localhost:3030/route/createForm`, {
                 name: name,
-                schema: schemaFile,
-                ui: UIschemaFile
+                schema: schemaFile
+                //ui: UIschemaFile
             })
                 .then((data) => {
                     console.log(data.data)
@@ -39,7 +39,7 @@ const FormCreator = () => {
     }
 
     const pageViews = () => {
-        if (schemaFile != "" && UIschemaFile != "" && link == "") {
+        if (schemaFile != "" && /*UIschemaFile != "" &&*/ link == "") {
             //return(<div><text>sup ma nigga?</text></div>)
 
             return showForm()
@@ -68,9 +68,9 @@ const FormCreator = () => {
             <div className='wrapper'>
                 <Form
                     schema={schemaFile}
-                    uiSchema={UIschemaFile}
-                    renderers={materialRenderers}
-                    cells={materialCells}
+                    //uiSchema={UIschemaFile}
+                    //renderers={materialRenderers}
+                    //cells={materialCells}
                 />
                 <form>
                     <label>Name of research:</label>
@@ -99,7 +99,21 @@ const FormCreator = () => {
                             }
                         })
                 }} ></input>
-                <label>Choose a Uischema JSON file: </label>
+                
+            </div>
+        )
+    }
+
+    return pageViews()
+
+}
+
+
+export default FormCreator
+
+
+
+/**<label>Choose a Uischema JSON file: </label>
                 <input type="file" title="Choose a UISchema JSON file" onChange={(e) => {
                     e.target.files[0].text()
                         .then((data) => {
@@ -111,14 +125,4 @@ const FormCreator = () => {
                                 console.log("error in chooseFiles in UI choosing is: ", error)
                             }
                         })
-                }} ></input>
-            </div>
-        )
-    }
-
-    return pageViews()
-
-}
-
-
-export default FormCreator
+                }} ></input> */

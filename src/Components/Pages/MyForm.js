@@ -5,7 +5,7 @@ import axios from 'axios'
 const MyForm=()=>{
 
     const [schema,setSchema]=useState("")
-    const [ui,setUI]=useState("")
+    //const [ui,setUI]=useState("")
     const [isReady,setIsReady]=useState(false)
     const [nameOfCollection,setNameOfCollection]=useState("")
 
@@ -17,7 +17,7 @@ const MyForm=()=>{
        .then((data) => {
          console.log("data is: ", data)
          setSchema(data.data.schema)
-         setUI(data.data.UI)
+         //setUI(data.data.UI)
          setNameOfCollection(data.data.nameOfCollection)
          setIsReady(true)
        })
@@ -54,7 +54,7 @@ const MyForm=()=>{
             {
                 isReady?<Form
                 schema={schema}
-                uiSchema={ui}
+                //uiSchema={ui}
                 onSubmit={handleSubmit}
                 />:<text>loading</text>
             }
