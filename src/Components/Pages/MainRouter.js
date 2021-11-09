@@ -5,7 +5,7 @@ import FormCreator from './FormCreator';
 import Home from './Home';
 import '../CSSfiles/Home.css'
 import MyForm from './MyForm';
-import FormCreatorV2 from './FormCreatorV2';
+import Answers from './Answers';
 
 const MainRouter = () => {
 
@@ -22,6 +22,9 @@ const MainRouter = () => {
           </Route>
           <Route path="/form/:name">
             <MyForm />
+          </Route>
+          <Route path="/our-answers">
+            <Answers/>
           </Route>
         </Switch>
       </div>

@@ -11,6 +11,7 @@ const MyForm=()=>{
 
     useEffect(()=>{ 
        //console.log("hummus:",window.location.pathname.slice(6))
+       
        const title=window.location.pathname.slice(6)
 
        axios.get(`http://localhost:3030/route/getForm?title=${title}`)
