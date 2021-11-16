@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Form from '@rjsf/core'
 import axios from 'axios'
+import { server } from './consts'
 
 const MyForm=()=>{
 
@@ -11,10 +12,10 @@ const MyForm=()=>{
 
     useEffect(()=>{ 
        //console.log("hummus:",window.location.pathname.slice(6))
-       
+       //console.log(window.location.host)
        const title=window.location.pathname.slice(6)
 
-       axios.get(`http://localhost:3030/route/getForm?title=${title}`)
+       axios.get(`http://${server}/route/get-form?title=${title}`)
        .then((data) => {
          console.log("data is: ", data)
          setSchema(data.data.schema)
@@ -32,7 +33,7 @@ const MyForm=()=>{
 
     const handleSubmit=(data)=>{
         //console.log(data.formData)
-        axios.post('http://localhost:3030/route/saveAnswers',{
+        axios.post(`http://${server}/route/save-answers`,{
           answers:data.formData,
           name:nameOfCollection
         })
@@ -45,7 +46,7 @@ const MyForm=()=>{
         .catch((err)=>{
           if(err)
           {
-            alert("a problem occured")
+            alert("a problem occured: ",err)
           }
         })
     }

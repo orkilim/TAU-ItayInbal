@@ -26,6 +26,9 @@ const MainRouter = () => {
           <Route path="/our-answers">
             <Answers/>
           </Route>
+          <Route path="*">
+            <div><text>this is not the path you are looking for</text></div>
+          </Route>
         </Switch>
       </div>
     </Router>

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import { server } from './consts'
 
 const Answers=({navigation,route})=>{
 
@@ -8,7 +9,7 @@ const Answers=({navigation,route})=>{
     const [flag,setFlag]=useState(false)
 
     const retrieveAnswers=()=>{
-        axios.get(`http://localhost:3030/route/getAnswers?name=${name}`)
+        axios.get(`http://${server}/route/get-answers?name=${name}`)
         .then((data)=>{
             
             console.log(data)

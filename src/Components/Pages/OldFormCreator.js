@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Switch, Route, Link, Redirect } from "react-ro
 import { JsonForms } from '@jsonforms/react';
 import { materialRenderers, materialCells, } from '@jsonforms/material-renderers';
 import { v4 as uuidv4 } from 'uuid';
+import { server } from './consts';
 
 const FormCreator = () => {
   const [formValues, setFormValues] = useState([{ name: "", email: "" }])//the fields of the form the include name and email
@@ -94,7 +95,7 @@ const FormCreator = () => {
         return
       }
     }
-    axios.post('http://localhost:3030/route/addForm/', {
+    axios.post(`http://${server}/route/add-form/`, {
       contactInfo: formValues,
       dataFieldsValues: dataFieldsValues
     })

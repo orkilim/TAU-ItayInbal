@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import '../CSSfiles/Formcreator.css'
-//import DataField from '../MyComponents/DataField'
+
 //import { BrowserRouter as Router, Switch, Route, Link, Redirect } from "react-router-dom";
-//import { JsonForms } from '@jsonforms/react';
 import { materialRenderers, materialCells } from '@jsonforms/material-renderers';
-//import { v4 as uuidv4 } from 'uuid';
 import Form from '@rjsf/core';
+import { Alert } from '@mui/material';
+import { server } from './consts';
 
 const FormCreator = () => {
 
@@ -22,12 +22,19 @@ const FormCreator = () => {
 
     const handleSubmit = () => {
         try {
-            axios.post(`http://localhost:3030/route/createForm`, {
+            axios.post(`http://${server}/route/create-form`, {
                 name: name,
                 schema: schemaFile
                 //ui: UIschemaFile
             })
                 .then((data) => {
+                    console.log(data.status)
+                    if(data.status==201)
+                    {
+                        
+                        alert("a research with that name already exists")
+                        return
+                    }
                     console.log(data.data)
                     console.log(data.data.msg)
                     setLink(data.data.link)

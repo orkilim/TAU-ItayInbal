@@ -12,6 +12,7 @@ import ReactDOMServer from "react-dom/server";
 import fs from 'fs'
 import editJsonFile from 'edit-json-file';
 import path from 'path';
+import { server } from './consts';
 
 const FormCreatorV2 = ({ navigation }) => {
 
@@ -24,7 +25,7 @@ const FormCreatorV2 = ({ navigation }) => {
             uiSchema={UIschemaFile}
         />)
         console.log(html)
-        axios.post(`http://localhost:3030/route/createForm`, {
+        axios.post(`http://${server}/route/create-form`, {
             formPath: "C:/Users/Or/Desktop/testing folder",
             answersPath: "C:/Users/Or/Desktop/testing folder",
             html: html,
