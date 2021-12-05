@@ -8,7 +8,7 @@ each time you see ```$ command``` it means to type the command (without the $) i
 
 __STOP THE RUNNING COMMAND WITH Ctrl+C on Windows or Linux__
 
-these are the instructions, settings and everything needed to use the formcreator system __SERVER__ successfully.
+these are the instructions, settings and everything needed to use the formcreator system __UI__ successfully.
 
 __STEPS:__
 
