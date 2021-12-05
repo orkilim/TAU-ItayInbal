@@ -2,7 +2,7 @@
 
 this the manual and settings of the front-end/UI/interface for the formcreator system
 
-__IMPORTANT TIPS:
+__IMPORTANT TIPS:__
 
 each time you see $ command it means to type the command (without the $) in the terminal and press Enter key to execute it
 
@@ -10,11 +10,11 @@ STOP THE RUNNING COMMAND WITH Ctrl+C on Windows or Linux
 
 these are the instructions, settings and everything needed to use the formcreator system __SERVER__ successfully.
 
-__STEPS:
+__STEPS:__
 
 in order to use the Formcreator successfully the following steps need to be done:
 
-__installation:
+__installation:__
 
 1. download and install FROM THE INTERNET Node.js (and NPM with it), Git, and your prefered IDE (I used Visual Studio Code)
 2. create a new folder for the front-end
@@ -46,7 +46,7 @@ run the following commands in the terminal of the IDE (or the OS's command line 
 
 for example when I use the commands it looks like so: C:\Users\Or\Desktop\TAU- work\Itay and Inbal's project\formcreator>npm start
 
-__Available Commands
+__Available Commands__
 
 In the project directory, you can run:
 
