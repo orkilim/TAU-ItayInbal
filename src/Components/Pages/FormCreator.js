@@ -1,64 +1,84 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import '../CSSfiles/Formcreator.css'
-
-//import { BrowserRouter as Router, Switch, Route, Link, Redirect } from "react-router-dom";
-import { materialRenderers, materialCells } from '@jsonforms/material-renderers';
 import Form from '@rjsf/core';
 import { Alert } from '@mui/material';
 import { server } from './consts';
 
+
+//a FUNCTIONAL COMPONENT!!! renders the page where the setup and creation of the form's configuration happen 
 const FormCreator = () => {
 
     const [schemaFile, setSchemaFile] = useState("")
     const [UIschemaFile, setUISchemaFile] = useState("")
     const [name, setName] = useState("")
     const [link, setLink] = useState("")
-
-    /*useEffect(() => {
-        console.log("schema: ", schemaFile)
-        console.log("ui: ", UIschemaFile)
-    }, [schemaFile, UIschemaFile])*/
+    const [withUI,setWithUI]=useState(false)
+    
+    /**
+     *a FUNCTION!!! sends a http request with the name of the form  research (name),
+     *the schema.json file (schema), and the ui-schema (ui) to the server we built
+     * 
+     */
 
     const handleSubmit = () => {
         try {
+
+            //http request via the Axios npm (instead of Fetch function)
             axios.post(`http://${server}/route/create-form`, {
                 name: name,
-                schema: schemaFile
-                //ui: UIschemaFile
+                schema: schemaFile,
+                ui: UIschemaFile
             })
                 .then((data) => {
-                    console.log(data.status)
-                    if(data.status==201)
-                    {
-                        
+                    if (data.status == 201) {
+
                         alert("a research with that name already exists")
                         return
                     }
-                    console.log(data.data)
-                    console.log(data.data.msg)
                     setLink(data.data.link)
                 })
         } catch (error) {
             if (error)
                 console.log("error in handleSubmit in FormCreator is: ", error)
+                alert(error)
         }
     }
 
-    const pageViews = () => {
-        if (schemaFile != "" && /*UIschemaFile != "" &&*/ link == "") {
-            //return(<div><text>sup ma nigga?</text></div>)
 
-            return showForm()
+
+    /**
+     * RENDERING MODES!!! select what to show on the page according to the place of the user in the system
+     * (where the user is in the flow of the usage)
+     */
+
+    const pageViews = () => {
+
+        //step 2
+        if (schemaFile != "" && UIschemaFile != "" && link == "") {
+            if (withUI) { //rendering form example WITH ui-schema
+
+            }
+            else {
+                //rendering form example without ui-schema
+                return showForm()
+            }
         }
-        else if (link != "") {
+        else if (link != "") {//step 3 and final
+            //showing the link created to a real form
             return showLink()
         }
         else {
+            //step 1- JSON file selection
             return chooseFiles()
         }
     }
 
+
+    /**
+     * A PAGE RENDER!!! shows the link created to the actul furm with the structure 
+     * we specified in schema and ui-schema earlier
+     */
     const showLink = () => {
 
         return (
@@ -70,18 +90,24 @@ const FormCreator = () => {
         )
     }
 
+
+    /**
+     * A PAGE RENDER!!! shows how the form will look like with the chosen schema JSON file
+     * NOT A REAL FILE!!! DOES NOT SAVE ANSWERS!!!
+     * 
+     * USAGE: after form is to the reseacher's liking, enter the name of the form in the input BELOW the form
+     * (in Name of research text input)  and press "submit"
+     */
     const showForm = () => {
         return (
             <div className='wrapper'>
-                <Form
+                <Form className="my-form"
                     schema={schemaFile}
-                    //uiSchema={UIschemaFile}
-                    //renderers={materialRenderers}
-                    //cells={materialCells}
+                    uiSchema={UIschemaFile}
                 />
                 <form>
                     <label>Name of research:</label>
-                    <input type="text" title="name of research" value={name} onChange={(e) => { setName(e.target.value) }} />
+                    <input required={true} type="text" title="name of research" value={name} onChange={(e) => { setName(e.target.value) }} />
                 </form>
                 <br />
                 <button type="button" title="Save Form" onClick={handleSubmit}>Save Form</button>
@@ -89,6 +115,12 @@ const FormCreator = () => {
         )
     }
 
+
+    /**
+     * A PAGE RENDER!!! choose schema and an optional ui-schema JSON files 
+     * to create the requested form CONFIGURATION!!!
+     * 
+     */
     const chooseFiles = () => {
 
         return (
@@ -106,21 +138,7 @@ const FormCreator = () => {
                             }
                         })
                 }} ></input>
-                
-            </div>
-        )
-    }
-
-    return pageViews()
-
-}
-
-
-export default FormCreator
-
-
-
-/**<label>Choose a Uischema JSON file: </label>
+                <label>Choose a Uischema JSON file: </label>
                 <input type="file" title="Choose a UISchema JSON file" onChange={(e) => {
                     e.target.files[0].text()
                         .then((data) => {
@@ -132,4 +150,15 @@ export default FormCreator
                                 console.log("error in chooseFiles in UI choosing is: ", error)
                             }
                         })
-                }} ></input> */
+                }} ></input>
+            </div>
+        )
+    }
+
+    return pageViews()
+
+}
+
+
+export default FormCreator
+

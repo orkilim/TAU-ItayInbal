@@ -2,17 +2,25 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { server } from './consts'
 
-const Answers=({navigation,route})=>{
+
+//a FUNCTIONAL COMPONENT!!! the research inputs the data in the text input and receives ALL
+//the results for the specific form/research. also being received is a metadata with time and date FOR EACH
+//PARTICIPANT and their date and time of answering
+
+const Results=({navigation,route})=>{
 
     const [myResults,setMyResults]=useState([])
     const [name,setName]=useState("")
-    const [flag,setFlag]=useState(false)
+    const [flag,setFlag]=useState(false) //a flag to mark if we have any data to be shown- 
+                                        //we won't show anything if it is false
+                                        //and will show the results of the inputted form/research name
 
+
+    //a FUNCTION!!! retrieves the results for the form/research specified in "name" variable
     const retrieveAnswers=()=>{
-        axios.get(`http://${server}/route/get-answers?name=${name}`)
+        axios.get(`http://${server}/route/get-results?name=${name}`)
         .then((data)=>{
             
-            console.log(data)
             const tempArr=[]
             for(const item in data.data)
             {
@@ -50,4 +58,4 @@ const Answers=({navigation,route})=>{
 
 }
 
-export default Answers
+export default Results

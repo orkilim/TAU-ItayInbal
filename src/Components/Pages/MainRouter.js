@@ -1,11 +1,9 @@
 import React from 'react'
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-//import FormCreator from './FormCreator';
 import FormCreator from './FormCreator';
-import Home from './Home';
 import '../CSSfiles/Home.css'
 import MyForm from './MyForm';
-import Answers from './Answers';
+import Results from './Results';
 
 const MainRouter = () => {
 
@@ -14,18 +12,42 @@ const MainRouter = () => {
     <Router>
       <div className="router_div">
         <Switch>
+          {
+            //page with instructions on how to get to each route
+          }
           <Route exact path="/">
-            <div><text>no page for this route, for the form creator end URL with /formcreator</text></div>
+            <div>
+              <text> for the form creator, end URL with /formcreator</text>
+              <text>for the forms themselves, end URL with /forms/(name-of-form/research) </text>
+              <text> for results, end URL with /results </text>
+              </div>
           </Route>
+
+          {
+            //route to the Formcreator itself
+          }
           <Route exact path="/formcreator">
             <FormCreator />
           </Route>
-          <Route path="/form/:name">
+
+          {
+            //route to go to the actual form created by the Formcreator component
+          }
+          <Route path="/forms/:name">
             <MyForm />
           </Route>
-          <Route path="/our-answers">
-            <Answers/>
+
+          {
+            //route to get to the results of selected form. the chosen form will be inputed inside 
+            //the page, NOT in the url route
+          }
+          <Route path="/results">
+            <Results/>
           </Route>
+
+          {
+            //route for every other url input
+          }
           <Route path="*">
             <div><text>this is not the path you are looking for</text></div>
           </Route>
