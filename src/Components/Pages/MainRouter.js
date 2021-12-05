@@ -18,7 +18,9 @@ const MainRouter = () => {
           <Route exact path="/">
             <div>
               <text> for the form creator, end URL with /formcreator</text>
+              <br/>
               <text>for the forms themselves, end URL with /forms/(name-of-form/research) </text>
+              <br/>
               <text> for results, end URL with /results </text>
               </div>
           </Route>

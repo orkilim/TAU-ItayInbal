@@ -18,7 +18,7 @@ const Results=({navigation,route})=>{
 
     //a FUNCTION!!! retrieves the results for the form/research specified in "name" variable
     const retrieveAnswers=()=>{
-        axios.get(`http://${server}/route/get-results?name=${name}`)
+        axios.get(`http://${server}/get-results?name=${name}`)
         .then((data)=>{
             
             const tempArr=[]

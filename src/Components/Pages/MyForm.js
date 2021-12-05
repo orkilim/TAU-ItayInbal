@@ -20,7 +20,7 @@ const MyForm=()=>{
        
        //a call to our server to get the form's schema and ui schema (if there is any),
        //and set them as the ones we are using
-       axios.get(`http://${server}/route/get-form?title=${title}`)
+       axios.get(`http://${server}/get-form?title=${title}`)
        .then((data) => {
          setSchema(data.data.schema)
          setUI(data.data.UI)
@@ -39,7 +39,7 @@ const MyForm=()=>{
 
     //a FUNCTION!!! handles the submitting of the form
     const handleSubmit=(data)=>{
-        axios.post(`http://${server}/route/save-results`,{
+        axios.post(`http://${server}/save-results`,{
           answers:data.formData,
           name:nameOfCollection
         })

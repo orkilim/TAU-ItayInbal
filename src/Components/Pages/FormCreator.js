@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import '../CSSfiles/Formcreator.css'
-import Form from '@rjsf/core';
+import Form from '@rjsf/material-ui';
 import { Alert } from '@mui/material';
 import { server } from './consts';
 
@@ -25,12 +25,14 @@ const FormCreator = () => {
         try {
 
             //http request via the Axios npm (instead of Fetch function)
-            axios.post(`http://${server}/route/create-form`, {
+            axios.post(`http://${server}/create-form`, {
                 name: name,
                 schema: schemaFile,
                 ui: UIschemaFile
             })
                 .then((data) => {
+                    console.log("data.data: ",data.data)
+
                     if (data.status == 201) {
 
                         alert("a research with that name already exists")

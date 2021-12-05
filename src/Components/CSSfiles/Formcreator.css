@@ -46,64 +46,10 @@
   }
 
 
-.dropdown-section{
-  
-  /*background-color: red;
-  
-  
-}
+*/
 
-.data-field-with-buttons-wrapper{
-  justify-content: center;
-  /*background-color: blue;
-  align-content: flex-start;
+
+.my-form{
   width:fit-content;
-  margin-bottom: 1.5cm;
-}
-
-.datafield-wrapper{
-  width: fit-content;
-  /*background-color: green;
-  margin-bottom: 0.2cm;
-  clear: left;
-}
-
-.dropdown{
-  background-color: gray;
-  width: 4cm;
-  margin: auto;
-  border-radius: 5px;
-  padding-left: 5px;
-  padding-right:5px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  box-shadow: 0 3px 6px black;
-  /*margin-bottom: 0.5cm;
-  transition: 0.5s;
-  
-}
-
-.dropdown:hover{
-  cursor: pointer;
-  background-color: lightgreen;
-}
-
-.invisible{
-  display: none;
-}
-
-.end_buttons_div{
-  clear:left;
-  margin-bottom: 2cm;
-}
-
-.data-field-remove{
-  float:left;
-  margin-bottom: 1cm;
-}*/
-
-
-/*.my-form>.field{
-  background-color: red;
   margin-bottom: 5cm;
-}*/
+}
