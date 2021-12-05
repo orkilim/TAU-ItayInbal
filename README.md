@@ -4,9 +4,9 @@ this the manual and settings of the front-end/UI/interface for the formcreator s
 
 __IMPORTANT TIPS:__
 
-each time you see $ command it means to type the command (without the $) in the terminal and press Enter key to execute it
+each time you see ```$ command``` it means to type the command (without the $) in the terminal and press Enter key to execute it
 
-STOP THE RUNNING COMMAND WITH Ctrl+C on Windows or Linux
+__STOP THE RUNNING COMMAND WITH Ctrl+C on Windows or Linux__
 
 these are the instructions, settings and everything needed to use the formcreator system __SERVER__ successfully.
 
