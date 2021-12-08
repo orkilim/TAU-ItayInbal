@@ -2,11 +2,6 @@
 
 this the manual and settings of the front-end/UI/interface for the formcreator system
 
-__IMPORTANT TIPS:__
-
-each time you see ```$ command``` it means to type the command (without the $) in the terminal and press Enter key to execute it
-
-__STOP THE RUNNING COMMAND WITH Ctrl+C on Windows or Linux__
 
 these are the instructions, settings and everything needed to use the formcreator system __UI__ successfully.
 
@@ -36,7 +31,9 @@ you have now downloaded the git repository to you local machine and downloaded a
 
 __working/running the front-end/UI:__
 
-althoug coming with the ```$ git clone``` done earlier in step 4 check for the following lines in the PACKAGE.JSON file under "script":
+the following lines should be in the package.json after the $ git clone
+
+but make sure they exist under "scripts". if not- add them
 
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -45,8 +42,17 @@ althoug coming with the ```$ git clone``` done earlier in step 4 check for the f
 
 run the following commands in the terminal of the IDE (or the OS's command line after navigating to the proper folder)
 
-
 for example when I use the commands it looks like so: C:\Users\Or\Desktop\TAU- work\Itay and Inbal's project\formcreator>npm start
+
+```$ npm start```- to start the front-end
+
+```$ npm test```- to run tests
+
+```$ npm run build```- to create build
+
+
+__STOP THE RUNNING COMMAND WITH Ctrl+C on Windows or Linux__
+
 
 __Available Commands__
 
@@ -81,18 +87,6 @@ You can learn more in the [Create React App documentation](https://facebook.gith
 To learn React, check out the [React documentation](https://reactjs.org/).
 
 
-__STOP THE RUNNING COMMAND WITH Ctrl+C on Windows or Linux__
-
-
-__saving changes in the code to this repository:__
-
-use the following commands to commit (=send changes) to the github repository (=save changes in github online repository):
-
-```$ git add nameOfFile``` for a specific file OR ```git add .``` to add all files
-```$ git commit -m "(your commit message goes here)"``` to commit changes to the repository (add message if you want where it says "(your commit message here)")
-```$ git push``` to send the changes
-
-
 __AVAILABLE URL ROUTES:__
 
 __(hostname)/formcreator__
@@ -103,6 +97,9 @@ you load the required schema json from your computer and the optional ui-schema 
 
 you will get an url link to the created form so you can actually send to to participants
 
+
+
+
 __(hostname)/forms/name-of-research__
 
 __WILL BE RECEIEVED AS URL LINK THAT WILL BE SENT TO PARTICIPANTS OF THE RESEARCH__
@@ -112,21 +109,32 @@ in this route we use the url link receieved from the /formcreator route and send
 they can use the link to get to the form and answer the questions in it and save them to the formcreator database in the appropriate collection
 
 
+
+
 __(hostname)/results__
 
 a route to get the results of a specific research. input the name of the form or research you want to get the results to in the text input and press the search button
+
+
 
 ### Advanced Configuration
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
+
+
 ### Deployment
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
+
+
+
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
 
 
 ## back-end repository: https://github.com/orkilim/TAU-ItayInbal-server.git
