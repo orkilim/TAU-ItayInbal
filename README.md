@@ -21,14 +21,14 @@ __installation:__
 NODE.JS- https://nodejs.org/en/download/
 
 2. create a new folder for the front-end
+3. ```$ cd (front-end-folder)```
 
-
- 3. __in development__ ```$ git clone --branch dev https://github.com/orkilim/TAU-ItayInbal.git``` to clone(/download the repository to your local machine) |
+ 4. __in development__ ```$ git clone --branch dev https://github.com/orkilim/TAU-ItayInbal.git``` to clone(/download the repository to your local machine) |
     
     __in production__ ```$ git clone https://github.com/orkilim/TAU-ItayInbal.git```|
     
- 4. ```$ npm install``` to install all the used dependencies ALREADY in the project
- 5. ```$ npm start```
+ 5. ```$ npm install``` to install all the used dependencies ALREADY in the project
+ 6. ```$ npm start```
 
 you have now downloaded the git repository to you local machine and downloaded and installed all the required dependancies(/libraries)
 
