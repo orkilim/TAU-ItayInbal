@@ -20,7 +20,7 @@ const Results=({navigation,route})=>{
     const retrieveAnswers=()=>{
         axios.get(`http://${server}/get-results?name=${name}`)
         .then((data)=>{
-            
+            //puts all the results in an array to display in the page
             const resultsArray=[]
             for(const item in data.data)
             {
@@ -38,11 +38,12 @@ const Results=({navigation,route})=>{
     return(
         <div>
             <form>
-                <label>Research to get answers to:</label>
+                <label>Name of research:</label>
                 <input type="text" value={name} title="Research" onChange={(event)=>{setName(event.target.value)}} />
-                <button type="button" title="Retrieve" onClick={()=>{retrieveAnswers()}} >Retrieve</button> 
+                <button type="button" title="Retrieve" onClick={()=>{retrieveAnswers()}} >Get Answers</button> 
             </form>
             {
+                //if we have nothing to show- show nothing, if we searched for results and we have to show- show them
                 flag?(
                   myResults.map((element,index)=>{
                       return(

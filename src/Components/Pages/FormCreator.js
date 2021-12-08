@@ -123,10 +123,13 @@ const FormCreator = () => {
      * 
      */
     const chooseFiles = () => {
-
+        
         return (
             <div className="wrapper">
                 <label>Choose a Schema JSON file: </label>
+                {
+                    //choose schema JSON file
+                }
                 <input type="file" title="Choose a Schema JSON file" onChange={(e) => {
                     e.target.files[0].text()
                         .then((data) => {
@@ -140,6 +143,9 @@ const FormCreator = () => {
                         })
                 }} ></input>
                 <label>Choose a Uischema JSON file: </label>
+                {
+                    //choose ui-schema JSON file
+                }
                 <input type="file" title="Choose a UISchema JSON file" onChange={(e) => {
                     e.target.files[0].text()
                         .then((data) => {

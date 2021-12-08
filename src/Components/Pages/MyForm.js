@@ -60,6 +60,7 @@ const MyForm=()=>{
     return(
         <div>
             {
+              //show form if done to load it, else show "loading"
                 isReady?<Form
                 schema={schema}
                 uiSchema={ui}
