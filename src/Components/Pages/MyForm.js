@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Form from '@rjsf/material-ui'
 import axios from 'axios'
 import { server } from './consts'
+import '../CSSfiles/Formcreator.css'
 
 
 //A functional component- renders a form (from the received data with the axios) to be filled by the participant
@@ -62,6 +63,7 @@ const MyForm=()=>{
             {
               //show form if done to load it, else show "loading"
                 isReady?<Form
+                className="my-form"
                 schema={schema}
                 uiSchema={ui}
                 onSubmit={handleSubmit}
