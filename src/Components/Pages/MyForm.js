@@ -4,7 +4,7 @@ import axios from 'axios'
 import { server } from './consts'
 
 
-//A FUNCTIONAL COMPNENT!!! renders a form (from the received data with the axios) to be filled by the participant
+//A functional component- renders a form (from the received data with the axios) to be filled by the participant
 const MyForm=()=>{
 
     const [schema,setSchema]=useState("")
@@ -37,7 +37,7 @@ const MyForm=()=>{
     },[])
 
 
-    //a FUNCTION!!! handles the submitting of the form
+    //a function- handles the submitting of the form
     const handleSubmit=(data)=>{
         axios.post(`http://${server}/save-results`,{
           answers:data.formData,

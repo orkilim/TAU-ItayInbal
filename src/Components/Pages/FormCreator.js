@@ -6,7 +6,7 @@ import { Alert } from '@mui/material';
 import { server } from './consts';
 
 
-//a FUNCTIONAL COMPONENT!!! renders the page where the setup and creation of the form's configuration happen 
+//a functional component- renders the page where the setup and creation of the form's configuration happen 
 const FormCreator = () => {
 
     const [schemaFile, setSchemaFile] = useState("")
@@ -16,7 +16,7 @@ const FormCreator = () => {
     const [withUI,setWithUI]=useState(false)
     
     /**
-     *a FUNCTION!!! sends a http request with the name of the form  research (name),
+     *a function- sends a http request with the name of the form  research (name),
      *the schema.json file (schema), and the ui-schema (ui) to the server we built
      * 
      */
@@ -31,8 +31,7 @@ const FormCreator = () => {
                 ui: UIschemaFile
             })
                 .then((data) => {
-                    console.log("data.data: ",data.data)
-
+                    
                     if (data.status == 201) {
 
                         alert("a research with that name already exists")
@@ -50,7 +49,7 @@ const FormCreator = () => {
 
 
     /**
-     * RENDERING MODES!!! select what to show on the page according to the place of the user in the system
+     * rendering modes- select what to show on the page according to the place of the user in the system
      * (where the user is in the flow of the usage)
      */
 
@@ -78,7 +77,7 @@ const FormCreator = () => {
 
 
     /**
-     * A PAGE RENDER!!! shows the link created to the actul furm with the structure 
+     * page render- shows the link created to the actul furm with the structure 
      * we specified in schema and ui-schema earlier
      */
     const showLink = () => {
@@ -94,7 +93,7 @@ const FormCreator = () => {
 
 
     /**
-     * A PAGE RENDER!!! shows how the form will look like with the chosen schema JSON file
+     * page render shows how the form will look like with the chosen schema JSON file
      * NOT A REAL FILE!!! DOES NOT SAVE ANSWERS!!!
      * 
      * USAGE: after form is to the reseacher's liking, enter the name of the form in the input BELOW the form
@@ -119,7 +118,7 @@ const FormCreator = () => {
 
 
     /**
-     * A PAGE RENDER!!! choose schema and an optional ui-schema JSON files 
+     * page render- choose schema and an optional ui-schema JSON files 
      * to create the requested form CONFIGURATION!!!
      * 
      */

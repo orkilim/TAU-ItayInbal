@@ -3,7 +3,7 @@ import axios from 'axios'
 import { server } from './consts'
 
 
-//a FUNCTIONAL COMPONENT!!! the research inputs the data in the text input and receives ALL
+//a functional component the research inputs the data in the text input and receives ALL
 //the results for the specific form/research. also being received is a metadata with time and date FOR EACH
 //PARTICIPANT and their date and time of answering
 
@@ -16,15 +16,15 @@ const Results=({navigation,route})=>{
                                         //and will show the results of the inputted form/research name
 
 
-    //a FUNCTION!!! retrieves the results for the form/research specified in "name" variable
+    //a function- retrieves the results for the form/research specified in "name" variable
     const retrieveAnswers=()=>{
         axios.get(`http://${server}/get-results?name=${name}`)
         .then((data)=>{
             
-            const tempArr=[]
+            const resultsArray=[]
             for(const item in data.data)
             {
-                tempArr.push((data.data)[item])
+                resultsArray.push((data.data)[item])
             }
             setMyResults(tempArr)
             setFlag(true)

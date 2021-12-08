@@ -63,14 +63,3 @@ export default MainRouter
 
 
 
-/**
- *
- * <Route path="/view">
-                <FormViewer />
-              </Route>
-
-
-              <li>
-                <Link to="/view">View Forms</Link>
-              </li>
- */
