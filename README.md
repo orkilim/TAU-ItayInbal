@@ -27,8 +27,10 @@ NODE.JS- https://nodejs.org/en/download/
     
     __in production__ ```$ git clone https://github.com/orkilim/TAU-ItayInbal.git```|
     
- 5. ```$ npm install``` to install all the used dependencies ALREADY in the project
- 6. ```$ npm start```
+ 5. ```$ cd TAU-ItayInbal```
+    
+ 6. ```$ npm install``` to install all the used dependencies ALREADY in the project
+ 7. ```$ npm start```
 
 you have now downloaded the git repository to you local machine and downloaded and installed all the required dependancies(/libraries)
 
