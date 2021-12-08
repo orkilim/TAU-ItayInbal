@@ -26,7 +26,7 @@ const Results=({navigation,route})=>{
             {
                 resultsArray.push((data.data)[item])
             }
-            setMyResults(tempArr)
+            setMyResults(resultsArray)
             setFlag(true)
         })
         .catch((err)=>{
