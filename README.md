@@ -17,18 +17,20 @@ in order to use the Formcreator successfully the following steps need to be done
 __installation:__
 
 1. download and install FROM THE INTERNET Node.js (and NPM with it), Git, and your prefered IDE (I used Visual Studio Code)
+
+NODE.JS- https://nodejs.org/en/download/
+
 2. create a new folder for the front-end
-3. open the terminal on the specified folder, there are two ways to do so:
- a. open the cmd (or the OS command line) and navigate to the desired folder with $ cd path/to/folder
+3. ```$ cd (front-end-folder)```
 
-OR
-
- b.right-clicking on the folder and selecting "open with (prefered IDE)"- in my case it would be "open with Visual Studio Code" and the symbol of the IDE near it, press the Terminal tab on the top bar and press "New Terminal"
-
-
-4. use the following commands to clone and work with this Github repository:
- 4.1 ```$ git clone``` https://github.com/orkilim/TAU-ItayInbal.git to clone(/download the repository to your local machine) 
- 4.2 ```$ npm install``` to install all the used dependencies ALREADY in the project
+ 4. __in development__ ```$ git clone --branch dev https://github.com/orkilim/TAU-ItayInbal.git``` to clone(/download the repository to your local machine) |
+    
+    __in production__ ```$ git clone https://github.com/orkilim/TAU-ItayInbal.git```|
+    
+ 5. ```$ cd TAU-ItayInbal```
+    
+ 6. ```$ npm install``` to install all the used dependencies ALREADY in the project
+ 7. ```$ npm start```
 
 you have now downloaded the git repository to you local machine and downloaded and installed all the required dependancies(/libraries)
 
@@ -125,3 +127,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+## back-end repository: https://github.com/orkilim/TAU-ItayInbal-server.git
+
