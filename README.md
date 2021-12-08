@@ -31,7 +31,9 @@ you have now downloaded the git repository to you local machine and downloaded a
 
 __working/running the front-end/UI:__
 
-althoug coming with the ```$ git clone``` done earlier in step 4 check for the following lines in the PACKAGE.JSON file under "script":
+the following lines should be in the package.json after the $ git clone
+
+but make sure they exist under "scripts". if not- add them
 
     "start": "react-scripts start",
     "build": "react-scripts build",
