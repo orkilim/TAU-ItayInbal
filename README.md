@@ -20,15 +20,15 @@ NODE.JS- https://nodejs.org/en/download/ <br/>
 
  2. ```git clone https://github.com/orkilim/TAU-ItayInbal.git```
  3. ```cd TAU-ItayInbal```<br/>
- 4. ```npm install``` to install all the used dependencies ALREADY in the project<br/>
+ 4. ```npm install``` to install all the used dependencies in the project<br/>
  5. ```npm start```<br/>
  6. enter ```https://(hostname)/test``` to check if the server is up and running 
 
 
-__about consts.js__
+__about consts.js__<br/>
 this is file where all the configurations should be- port, server port, and so on. can be found inside the __src__ folder
 
-__changing port:__
+__changing port:__<br/>
 if you wish to change the UI's port you can do it in the package.json:<br/>
 
 the package.json can be found on the root folder (the first layer of folders) of the project<br/>
