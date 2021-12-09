@@ -28,6 +28,22 @@ NODE.JS- https://nodejs.org/en/download/ <br/>
 __about consts.js__
 this is file where all the configurations should be- port, server port, and so on. can be found inside the __src__ folder
 
+__changing port:__
+if you wish to change the UI's port you can do it in the package.json:<br/>
+
+the package.json can be found on the root folder (the first layer of folders) of the project<br/>
+(alongside this README file and the src folder)
+<br/>
+in order to change the UI's port:
+
+go to "scripts"--> change FROM ```"start": "react-scripts start"``` TO:<br/>
+
+__on Windows:__ ```"start": " set PORT=(number of port) react-scripts start"``` <br/>
+
+__on Mac/Linux:__ ```"start": " PORT=(number of port) react-scripts start"``` 
+
+and run the app as usual with ```npm start```
+
 __working/running the front-end/UI:__
 
 
