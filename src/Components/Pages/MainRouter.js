@@ -4,6 +4,7 @@ import FormCreator from './FormCreator';
 import '../CSSfiles/Home.css'
 import MyForm from './MyForm';
 import Results from './Results';
+import Test from './Test'
 
 const MainRouter = () => {
 
@@ -22,6 +23,8 @@ const MainRouter = () => {
               <text>for the forms themselves, end URL with /forms/(name-of-form/research) </text>
               <br/>
               <text> for results, end URL with /results </text>
+              <br/>
+              <text>to test the server, end URL with /test</text>
               </div>
           </Route>
 
@@ -48,11 +51,19 @@ const MainRouter = () => {
           </Route>
 
           {
+            //UI-to-server communication route
+          }
+          <Route path="/test">
+            <Test/>
+          </Route>
+
+          {
             //route for every other url input
           }
           <Route path="*">
             <div><text>this is not the path you are looking for</text></div>
           </Route>
+
         </Switch>
       </div>
     </Router>
