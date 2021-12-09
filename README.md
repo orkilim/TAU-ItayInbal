@@ -38,7 +38,7 @@ in order to change the UI's port:
 
 go to "scripts"--> change FROM ```"start": "react-scripts start"``` TO:<br/>
 
-__on Windows:__ ```"start": " set PORT=(number of port) react-scripts start"``` <br/>
+__on Windows:__ ```"start": " set PORT=(number of port) && react-scripts start"``` <br/>
 
 __on Mac/Linux:__ ```"start": " PORT=(number of port) react-scripts start"``` 
 
