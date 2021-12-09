@@ -3,6 +3,7 @@
 this the manual and settings of the front-end/UI/interface for the formcreator system
 
 
+
 these are the instructions, settings and everything needed to use the formcreator system __UI__ successfully.
 
 __STEPS:__
@@ -11,47 +12,33 @@ in order to use the Formcreator successfully the following steps need to be done
 
 __installation:__
 
-1. download and install FROM THE INTERNET Node.js (and NPM with it), Git, and your prefered IDE (I used Visual Studio Code)
+1. download and install Node.js (and NPM with it)<br/>
 
-NODE.JS- https://nodejs.org/en/download/
+NODE.JS- https://nodejs.org/en/download/ <br/>
 
-2. create a new folder for the front-end
-3. ```$ cd (front-end-folder)```
+(we used NODE.js v14.18.1)
 
- 4. __in development__ ```$ git clone --branch dev https://github.com/orkilim/TAU-ItayInbal.git``` to clone(/download the repository to your local machine) |
-    
-    __in production__ ```$ git clone https://github.com/orkilim/TAU-ItayInbal.git```|
-    
- 5. ```$ cd TAU-ItayInbal```
-    
- 6. ```$ npm install``` to install all the used dependencies ALREADY in the project
- 7. ```$ npm start```
+ 2. ```git clone https://github.com/orkilim/TAU-ItayInbal.git```
+ 3. ```cd TAU-ItayInbal```<br/>
+ 4. ```npm install``` to install all the used dependencies ALREADY in the project<br/>
+ 5. ```npm start```<br/>
+ 6. enter ```https://(hostname)/test``` to check if the server is up and running 
 
-you have now downloaded the git repository to you local machine and downloaded and installed all the required dependancies(/libraries)
+
+__about consts.js__
+this is file where all the configurations should be- port, server port, and so on. can be found inside the __src__ folder
 
 __working/running the front-end/UI:__
 
-the following lines should be in the package.json after the $ git clone
 
-but make sure they exist under "scripts". if not- add them
-
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+run the following commands in the terminal of the IDE (or the OS's command line after navigating to the proper folder)<br/>
 
 
-run the following commands in the terminal of the IDE (or the OS's command line after navigating to the proper folder)
+```$ npm start```- to start the front-end<br/>
 
-for example when I use the commands it looks like so: C:\Users\Or\Desktop\TAU- work\Itay and Inbal's project\formcreator>npm start
+```$ npm test```- to run tests<br/>
 
-```$ npm start```- to start the front-end
-
-```$ npm test```- to run tests
-
-```$ npm run build```- to create build
-
-
-__STOP THE RUNNING COMMAND WITH Ctrl+C on Windows or Linux__
+```$ npm run build```- to create build<br/>
 
 
 __Available Commands__
@@ -92,50 +79,20 @@ __AVAILABLE URL ROUTES:__
 __(hostname)/formcreator__
 
 goes to the page where you actually create the form
-
 you load the required schema json from your computer and the optional ui-schema input the name of the research/form when prompt to.
-
 you will get an url link to the created form so you can actually send to to participants
 
-
-
+<br/>
 
 __(hostname)/forms/name-of-research__
 
-__WILL BE RECEIEVED AS URL LINK THAT WILL BE SENT TO PARTICIPANTS OF THE RESEARCH__
-
+__WILL BE RECEIEVED AS URL LINK THAT WILL BE SENT TO PARTICIPANTS OF THE RESEARCH__<br/>
 in this route we use the url link receieved from the /formcreator route and send it to to participants
-
 they can use the link to get to the form and answer the questions in it and save them to the formcreator database in the appropriate collection
 
-
+<br/>
 
 
 __(hostname)/results__
 
 a route to get the results of a specific research. input the name of the form or research you want to get the results to in the text input and press the search button
-
-
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-
-
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-
-
-
-
-## back-end repository: https://github.com/orkilim/TAU-ItayInbal-server.git
-
