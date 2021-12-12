@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import '../CSSfiles/Formcreator.css'
-import Form from '@rjsf/material-ui';
+import Form from '@rjsf/core';
 import { Alert } from '@mui/material';
 import { server } from './consts';
+
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 //a functional component- renders the page where the setup and creation of the form's configuration happen 
 const FormCreator = () => {
 
     const [schemaFile, setSchemaFile] = useState("")
-    const [UIschemaFile, setUISchemaFile] = useState("")
+    //const [UIschemaFile, setUISchemaFile] = useState("")
     const [name, setName] = useState("")
     const [link, setLink] = useState("")
     const [withUI,setWithUI]=useState(false)
@@ -28,7 +30,7 @@ const FormCreator = () => {
             axios.post(`http://${server}/create-form`, {
                 name: name,
                 schema: schemaFile,
-                ui: UIschemaFile
+                //ui: UIschemaFile
             })
                 .then((data) => {
                     
@@ -56,7 +58,7 @@ const FormCreator = () => {
     const pageViews = () => {
 
         //step 2
-        if (schemaFile != "" && UIschemaFile != "" && link == "") {
+        if (schemaFile != "" && /*UIschemaFile != "" &&*/ link == "") {
             if (withUI) { //rendering form example WITH ui-schema
 
             }
@@ -104,7 +106,7 @@ const FormCreator = () => {
             <div className='wrapper'>
                 <Form className="my-form"
                     schema={schemaFile}
-                    uiSchema={UIschemaFile}
+                    //uiSchema={UIschemaFile}
                 />
                 <form>
                     <label>Name of research:</label>
@@ -142,7 +144,24 @@ const FormCreator = () => {
                             }
                         })
                 }} ></input>
-                <label>Choose a Uischema JSON file: </label>
+                
+            </div>
+        )
+    }
+
+    return pageViews()
+
+}
+
+
+export default FormCreator
+
+
+
+/**
+ * 
+ * 
+ * <label>Choose a Uischema JSON file: </label>
                 {
                     //choose ui-schema JSON file
                 }
@@ -158,14 +177,4 @@ const FormCreator = () => {
                             }
                         })
                 }} ></input>
-            </div>
-        )
-    }
-
-    return pageViews()
-
-}
-
-
-export default FormCreator
-
+ */

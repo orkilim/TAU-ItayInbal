@@ -4,6 +4,7 @@ import axios from 'axios'
 import { server } from './consts'
 import '../CSSfiles/Formcreator.css'
 
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 //A functional component- renders a form (from the received data with the axios) to be filled by the participant
 const MyForm=()=>{
