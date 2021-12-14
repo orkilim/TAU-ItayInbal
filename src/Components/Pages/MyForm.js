@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Form from '@rjsf/material-ui'
+import Form from '@rjsf/core'
 import axios from 'axios'
 import { server } from './consts'
 import '../CSSfiles/Formcreator.css'
