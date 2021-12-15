@@ -31,14 +31,14 @@ const MainRouter = () => {
           {
             //route to the Formcreator itself
           }
-          <Route exact path="/formcreator">
+          <Route exact path="/create-form">
             <FormCreator />
           </Route>
 
           {
             //route to go to the actual form created by the Formcreator component
           }
-          <Route path="/forms/:name">
+          <Route path="/forms/:formId">
             <MyForm />
           </Route>
 

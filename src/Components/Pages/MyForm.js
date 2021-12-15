@@ -19,7 +19,7 @@ const MyForm=()=>{
 
     useEffect(()=>{ 
        const title=window.location.pathname.slice(7)
-       
+       console.log("title: ",title)
        //a call to our server to get the form's schema and ui schema (if there is any),
        //and set them as the ones we are using
        axios.get(`http://${server}/get-form?title=${title}`)
