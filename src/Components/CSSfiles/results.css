@@ -1,0 +1,15 @@
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box;}
+
+.researches-names{
+    margin: auto;
+}
+
+.form-result{
+    border-width: 2px;
+    border-style: solid;
+    border-color: black;
+    width: fit-content;
+    margin-bottom: 1cm;
+    margin: auto;
+}

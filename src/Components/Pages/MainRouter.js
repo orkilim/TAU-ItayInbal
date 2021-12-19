@@ -5,6 +5,7 @@ import '../CSSfiles/Home.css'
 import MyForm from './MyForm';
 import Results from './Results';
 import Test from './Test'
+import Home from './Home';
 
 const MainRouter = () => {
 
@@ -17,15 +18,7 @@ const MainRouter = () => {
             //page with instructions on how to get to each route
           }
           <Route exact path="/">
-            <div>
-              <text> for the form creator, end URL with /formcreator</text>
-              <br/>
-              <text>for the forms themselves, end URL with /forms/(name-of-form/research) </text>
-              <br/>
-              <text> for results, end URL with /results </text>
-              <br/>
-              <text>to test the server, end URL with /test</text>
-              </div>
+            <Home />
           </Route>
 
           {
@@ -46,12 +39,13 @@ const MainRouter = () => {
             //route to get to the results of selected form. the chosen form will be inputed inside 
             //the page, NOT in the url route
           }
-          <Route path="/results">
+          <Route exact path="/results">
             <Results/>
           </Route>
 
+        
           {
-            //UI-to-server communication route
+            //UI-to-server communication test
           }
           <Route path="/test">
             <Test/>

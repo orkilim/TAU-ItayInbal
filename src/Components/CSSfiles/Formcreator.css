@@ -58,3 +58,11 @@
 .file-input{
   margin: auto;
 }
+
+.form-saver{
+  border-color: black;
+  border-width: 5px;
+  border-style: solid;
+  width: fit-content;
+  margin: auto;
+}

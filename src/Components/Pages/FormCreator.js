@@ -136,16 +136,20 @@ const showLink = () => {
 const showFormWithUI = () => {
     return (
         <div className='wrapper'>
-            <Form className="my-form"
-                schema={schemaFile}
-                uiSchema={UIschemaFile}
-            />
+            <div className="form-saver" >
             <form>
                 <label>Name of research:</label>
                 <input required={true} type="text" title="name of research" value={name} onChange={(e) => { setName(e.target.value) }} />
             </form>
             <br />
             <button type="button" title="Save Form" onClick={handleSubmit}>Save Form</button>
+            </div>
+            <br/>
+            <br/>
+            <Form className="my-form"
+                schema={schemaFile}
+                uiSchema={UIschemaFile}
+            />
         </div>
     )
 }
@@ -163,15 +167,19 @@ const showFormWithUI = () => {
  const showFormWithoutUI = () => {
     return (
         <div className='wrapper'>
-            <Form className="my-form"
-                schema={schemaFile}
-            />
+            <div className="form-saver" >
             <form>
                 <label>Name of research:</label>
                 <input required={true} type="text" title="name of research" value={name} onChange={(e) => { setName(e.target.value) }} />
             </form>
             <br />
             <button type="button" title="Save Form" onClick={handleSubmit}>Save Form</button>
+            </div>
+            <br/>
+            <br/>
+            <Form className="my-form"
+                schema={schemaFile}
+            />
         </div>
     )
 }
