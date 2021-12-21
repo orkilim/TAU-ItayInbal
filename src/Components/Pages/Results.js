@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { server } from './consts'
-import { TextField,Autocomplete } from '@mui/material'
+import TextField from '@mui/material/TextField';
+import Autocomplete from '@mui/material/Autocomplete';
 import '../CSSfiles/results.css'
 
 
@@ -11,47 +12,82 @@ import '../CSSfiles/results.css'
 
 const Results = ({ navigation, route }) => {
 
-    const [formsNames,setFormsNames]=useState({})
-    const [myResults, setMyResults] = useState(undefined)
+    const [formsNames, setFormsNames] = useState([])
+    const [myResults, setMyResults] = useState([])
     const [name, setName] = useState("")
     const [flag, setFlag] = useState(false) //a flag to mark if we have any data to be shown- 
     //we won't show anything if it is false
     //and will show the results of the inputted form/research name
 
-    useEffect(()=>{
-        console.log(myResults)
-    },[myResults])
-
-    useEffect(()=>{
-        let formsNamesArr=[]
+    useEffect(() => {
+        let formsNamesArr = []
         axios.get(`http://${server}/get-forms-names`)
-        .then((data)=>{
-            for(let i=0;i<data.data.length;i++)
-            {
-                if((data.data)[i].name!="configurations")
-                {
-                    formsNamesArr.push((data.data)[i].name)
+            .then((data) => {
+                for (let i = 0; i < data.data.length; i++) {
+                    if ((data.data)[i].name != "configurations") {
+                        formsNamesArr.push((data.data)[i].name)
+                    }
                 }
-            }
-            setFormsNames(formsNamesArr)
-        })
-        .catch((err)=>{
-            console.log("problem with getting the names of the forms in useEffect: ",err)
-        })
-    },[])
+                setFormsNames(formsNamesArr)
 
+            })
+            .catch((err) => {
+                console.log("problem with getting the names of the forms in useEffect: ", err)
+            })
+    }, [])
+
+    //a function that show the results as one big json separates to little jsons (each by a black border)
+    const showResults = () => {
+
+        return (
+            <div className="json-wrapper">
+                <text>{"{"}</text>
+            {    
+            myResults.map((element, index) => {
+              if(index<=(myResults.length-2)){
+                return (
+                    <div className="form-result" key={index}>
+                        <text >{`"${index}": {`}"data":{JSON.stringify(element.data)},</text>
+                        <br />
+                        <text  >"date":"{element.date}",</text>
+                        <br />
+                        <text  >"time":"{element.time}"{"},"}</text>
+                    </div>
+                )
+              }
+              else{
+                return (
+                    <div className="form-result" key={index}>
+                        <text >{`"${index}": {`}"data":{JSON.stringify(element.data)},</text>
+                        <br />
+                        <text  >"date":"{element.date}",</text>
+                        <br />
+                        <text  >"time":"{element.time}"{"}"}</text>
+                    </div>
+                )
+              }
+            })
+        }
+        <text>{"}"}</text>
+            </div>
+        )
+
+    }
 
     //a function- retrieves the results for the form/research specified in "name" variable
     const retrieveAnswers = () => {
+        if (!formsNames.includes(name)) {
+            alert("please choose a valid form name")
+            return;
+        }
         axios.get(`http://${server}/get-results?name=${name}`)
             .then((data) => {
-                let resultsArr=[]
-                for(let i=0;i<data.data.results.length;i++)
-                {
-                    const tempResultObj={//a temporary object to hold the data AND metadata
-                        data:(data.data.results)[i].data,
-                        date:(data.data.results)[i].metadata.date,
-                        time:(data.data.results)[i].metadata.time
+                let resultsArr = []
+                for (let i = 0; i < data.data.results.length; i++) {
+                    const tempResultObj = {//a temporary object to hold the data AND metadata
+                        data: (data.data.results)[i].data,
+                        date: (data.data.results)[i].metadata.date,
+                        time: (data.data.results)[i].metadata.time
                     }
                     resultsArr.push(tempResultObj)
                 }
@@ -66,35 +102,32 @@ const Results = ({ navigation, route }) => {
 
     return (
         <div>
-            <form onSubmit={() => { retrieveAnswers() }}>
-                <label>Choose or type the name of requested research</label>
-                <br/>
-                <Autocomplete
-                    disablePortal
-                    className="researches-names"
-                    options={formsNames}
-                    sx={{ width: 300 }}
-                    onChange={(event, value) => setName(value)}
-                    renderInput={(params) => <TextField {...params} label="Choose Research" />}
-                />
-                <br/>
-                <button type="button" title="Retrieve" onClick={() => { retrieveAnswers() }} >Get Results</button>
-                <br/>
-            </form>
+            {
+                formsNames ? (<form onSubmit={(e) => {
+                    e.preventDefault()
+                    retrieveAnswers()
+                }}>
+                    <label>Choose or type the name of requested research</label>
+                    <br />
+                    <Autocomplete
+                        disablePortal
+                        className="researches-names"
+                        options={formsNames}
+                        sx={{ width: 300 }}
+                        value={name}
+                        onChange={(event, value) => setName(value)}
+                        renderInput={(params) => <TextField {...params} label="Choose Research" />}
+                    />
+                    <br />
+                    <button type="button" title="Retrieve" onClick={() => { retrieveAnswers() }} >Get Results</button>
+                    <br />
+                </form>) : (<text>loading forms names...</text>)
+            }
+
             {
                 //if we have nothing to show- show nothing, if we searched for results and we have to show- show them
                 flag ? (
-                    myResults.map((element, index) => {
-                        return (
-                            <div className="form-result" key={index}>
-                                <text key={index}>{JSON.stringify(element.data)}</text>
-                                <br/>
-                                <text key={index} >{JSON.stringify(element.date)}</text>
-                                <br/>
-                                <text key={index} >{JSON.stringify(element.time)}</text>
-                            </div>
-                        )
-                    })
+                    showResults()
                 ) : null
             }
         </div>
