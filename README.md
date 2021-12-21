@@ -28,7 +28,8 @@ NODE.JS- https://nodejs.org/en/download/ <br/>
 __about consts.js__<br/>
 this is the file where all the configurations should be __besides__ the port of the UI (that is configured in the package.json file)<br/>
 
-here we define the server hostname and port- ```const server="(ip and port here)"```. can be found inside the __src__ folder
+here we define the server hostname and port- ```const server="(ip and port here)"```. can be found inside the __src__ folder <br/>
+in the __pages__ folder
 
 __changing port:__<br/>
 if you wish to change the UI's port you can do it in the package.json:<br/>
