@@ -18,6 +18,7 @@ const Results = ({ navigation, route }) => {
     const [flag, setFlag] = useState(false) //a flag to mark if we have any data to be shown- 
     //we won't show anything if it is false
     //and will show the results of the inputted form/research name
+    const [showLoading,setShowLoading]=useState(false)
 
     useEffect(() => {
         let formsNamesArr = []
@@ -92,6 +93,7 @@ const Results = ({ navigation, route }) => {
                     resultsArr.push(tempResultObj)
                 }
                 setMyResults(resultsArr)//puts the results json retrieved from the server in the front end in MyResults
+                setShowLoading(false)
                 setFlag(true)
             })
             .catch((err) => {
@@ -105,6 +107,7 @@ const Results = ({ navigation, route }) => {
             {
                 formsNames ? (<form onSubmit={(e) => {
                     e.preventDefault()
+                    setShowLoading(true)
                     retrieveAnswers()
                 }}>
                     <label>Choose or type the name of requested research</label>
@@ -119,11 +122,14 @@ const Results = ({ navigation, route }) => {
                         renderInput={(params) => <TextField {...params} label="Choose Research" />}
                     />
                     <br />
-                    <button type="button" title="Retrieve" onClick={() => { retrieveAnswers() }} >Get Results</button>
+                    <button type="button" title="Retrieve" onClick={() => { setShowLoading(true);retrieveAnswers() }} >Get Results</button>
                     <br />
                 </form>) : (<text>loading forms names...</text>)
             }
-
+            {
+                //show "loading..."
+                showLoading?(<text>Loading Results...</text>):null
+            }
             {
                 //if we have nothing to show- show nothing, if we searched for results and we have to show- show them
                 flag ? (
