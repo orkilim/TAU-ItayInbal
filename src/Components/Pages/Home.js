@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { server } from '../../consts';
-
+import { Link } from "react-router-dom";
 
 const Home = () => {
 
@@ -24,6 +24,13 @@ const Home = () => {
                 <div>
                     <b>Welcome to Formcreator</b>
                     <br />
+                    <br/>
+                    <Link to="/create-form">Create Form</Link>
+                    <br />
+                    <br/>
+                    <Link to="/results">Results</Link>
+                    <br />
+                    <br/>
                     <text>{status}</text>
                 </div>
             ) : null

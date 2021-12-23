@@ -1,4 +1,7 @@
 //hostname of the BACK-END
 const server="localhost:3030"
 
-module.exports={server}
+//host of ui (front end)
+const uihost=window.location.host
+
+module.exports={server,uihost}

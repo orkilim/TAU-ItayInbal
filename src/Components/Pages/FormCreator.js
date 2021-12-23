@@ -3,7 +3,7 @@ import axios from 'axios'
 import '../CSSfiles/Formcreator.css'
 import Form from '@rjsf/core';
 import { Alert, Checkbox, FormControlLabel } from '@mui/material';
-import { server } from '../../consts';
+import { server,uihost } from '../../consts';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -16,14 +16,25 @@ const FormCreator = () => {
     const [name, setName] = useState("")
     const [link, setLink] = useState("")
     const [withUI, setWithUI] = useState(false)
+    const [serverOff,setServerOff]=useState(true)//a flag to check if the server is off
 
+    useEffect(()=>{
+        axios.get(`http://${server}/test`)
+        .then((data)=>{
+            setServerOff(false)
+        })
+        .catch((err)=>{
+            console.log("server is probably down")
+        })
+    },[])
+
+    
 
     /**
      *a function- sends a http request with the name of the form  research (name),
      *the schema.json file (schema), and the ui-schema (ui) to the server we built
      * 
      */
-
     const handleSubmit = () => {
         if (withUI) {
             try {
@@ -33,7 +44,7 @@ const FormCreator = () => {
                 }
                 //http request via the Axios npm (instead of Fetch function)
                 axios.post(`http://${server}/create-form`, {
-                    uihost: window.location.host,
+                    uihost: uihost,
                     name: name,
                     schema: schemaFile,
                     ui: UIschemaFile
@@ -42,7 +53,7 @@ const FormCreator = () => {
 
                         if (data.status == 201) {
 
-                            alert("a research with that name already exists")
+                            alert("a research with that name already exists. please choose a unique name")
                             return
                         }
                         setLink(data.data.link)
@@ -61,7 +72,7 @@ const FormCreator = () => {
                 }
                 //http request via the Axios npm (instead of Fetch function)
                 axios.post(`http://${server}/create-form`, {
-                    uihost: window.location.host,
+                    uihost: uihost,
                     name: name,
                     schema: schemaFile,
                 })
@@ -207,7 +218,7 @@ const FormCreator = () => {
                 {
                     //choose schema JSON file
                 }
-                <input className="file-input" type="file" title="Choose a Schema JSON file" onChange={(e) => {
+                <input className="file-input" disabled={serverOff} type="file" title="Choose a Schema JSON file" onChange={(e) => {
                     e.target.files[0].text()
                         .then((data) => {
                             data = JSON.parse(data)
@@ -229,7 +240,7 @@ const FormCreator = () => {
                     withUI ? (
                         <div>
                             <label>Choose a Uischema JSON file: </label>
-                            <input className="file-input" type="file" title="Choose a UISchema JSON file" onChange={(e) => {
+                            <input className="file-input" disabled={serverOff} type="file" title="Choose a UISchema JSON file" onChange={(e) => {
                                 e.target.files[0].text()
                                     .then((data) => {
                                         data = JSON.parse(data)
@@ -244,6 +255,8 @@ const FormCreator = () => {
                         </div>
                     ) : null
                 }
+                <br/>
+                {serverOff?(<text ><b><i>server is off. please run it</i></b></text>):null}
             </div>
         )
     }

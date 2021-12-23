@@ -18,58 +18,45 @@ const Results = ({ navigation, route }) => {
     const [flag, setFlag] = useState(false) //a flag to mark if we have any data to be shown- 
     //we won't show anything if it is false
     //and will show the results of the inputted form/research name
-    const [showLoading,setShowLoading]=useState(false)
+    const [showLoading, setShowLoading] = useState(false)
+    const [serverOff, setServerOff] = useState(true)//a flag to check if the server is off
 
     useEffect(() => {
-        let formsNamesArr = []
-        axios.get(`http://${server}/get-forms-names`)
+        axios.get(`http://${server}/test`)
             .then((data) => {
-                for (let i = 0; i < data.data.length; i++) {
-                    if ((data.data)[i].name != "configurations") {
-                        formsNamesArr.push((data.data)[i].name)
-                    }
-                }
-                setFormsNames(formsNamesArr)
+                setServerOff(false)
 
+                let formsNamesArr = []
+                axios.get(`http://${server}/get-forms-names`)
+                    .then((data) => {
+                        for (let i = 0; i < data.data.length; i++) {
+                            if ((data.data)[i].name != "configurations") {
+                                formsNamesArr.push((data.data)[i].name)
+                            }
+                        }
+                        setFormsNames(formsNamesArr)
+
+                    })
+                    .catch((err) => {
+                        console.log("problem with getting the names of the forms in useEffect: ", err)
+                    })
             })
             .catch((err) => {
-                console.log("problem with getting the names of the forms in useEffect: ", err)
+                console.log("server is probably down")
             })
+
     }, [])
+
+
 
     //a function that show the results as one big json separates to little jsons (each by a black border)
     const showResults = () => {
 
         return (
             <div className="json-wrapper">
-                <text>{"{"}</text>
-            {    
-            myResults.map((element, index) => {
-              if(index<=(myResults.length-2)){
-                return (
-                    <div className="form-result" key={index}>
-                        <text >{`"${index}": {`}"data":{JSON.stringify(element.data)},</text>
-                        <br />
-                        <text  >"date":"{element.date}",</text>
-                        <br />
-                        <text  >"time":"{element.time}"{"},"}</text>
-                    </div>
-                )
-              }
-              else{
-                return (
-                    <div className="form-result" key={index}>
-                        <text >{`"${index}": {`}"data":{JSON.stringify(element.data)},</text>
-                        <br />
-                        <text  >"date":"{element.date}",</text>
-                        <br />
-                        <text  >"time":"{element.time}"{"}"}</text>
-                    </div>
-                )
-              }
-            })
-        }
-        <text>{"}"}</text>
+                <pre id="json" >
+                    {JSON.stringify(myResults,undefined,5)}
+                </pre>
             </div>
         )
 
@@ -83,16 +70,8 @@ const Results = ({ navigation, route }) => {
         }
         axios.get(`http://${server}/get-results?name=${name}`)
             .then((data) => {
-                let resultsArr = []
-                for (let i = 0; i < data.data.results.length; i++) {
-                    const tempResultObj = {//a temporary object to hold the data AND metadata
-                        data: (data.data.results)[i].data,
-                        date: (data.data.results)[i].metadata.date,
-                        time: (data.data.results)[i].metadata.time
-                    }
-                    resultsArr.push(tempResultObj)
-                }
-                setMyResults(resultsArr)//puts the results json retrieved from the server in the front end in MyResults
+
+                setMyResults(data.data)//puts the results json retrieved from the server in the front end in MyResults
                 setShowLoading(false)
                 setFlag(true)
             })
@@ -107,12 +86,15 @@ const Results = ({ navigation, route }) => {
             {
                 formsNames ? (<form onSubmit={(e) => {
                     e.preventDefault()
-                    setShowLoading(true)
-                    retrieveAnswers()
+                    if (name != "") {
+                        setShowLoading(true)
+                        retrieveAnswers()
+                    }
                 }}>
                     <label>Choose or type the name of requested research</label>
                     <br />
                     <Autocomplete
+                        disabled={serverOff}
                         disablePortal
                         className="researches-names"
                         options={formsNames}
@@ -122,13 +104,15 @@ const Results = ({ navigation, route }) => {
                         renderInput={(params) => <TextField {...params} label="Choose Research" />}
                     />
                     <br />
-                    <button type="button" title="Retrieve" onClick={() => { setShowLoading(true);retrieveAnswers() }} >Get Results</button>
+                    <button disabled={serverOff} type="button" title="Retrieve" onClick={() => { setShowLoading(true); retrieveAnswers() }} >Get Results</button>
                     <br />
                 </form>) : (<text>loading forms names...</text>)
             }
+            <br />
+            {serverOff ? (<text ><b><i>server is off. please run it</i></b></text>) : null}
             {
                 //show "loading..."
-                showLoading?(<text>Loading Results...</text>):null
+                showLoading ? (<text>Loading Results...</text>) : null
             }
             {
                 //if we have nothing to show- show nothing, if we searched for results and we have to show- show them
