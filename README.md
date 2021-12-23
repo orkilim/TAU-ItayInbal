@@ -2,7 +2,7 @@
 
 this the manual and settings of the front-end/UI/interface for the formcreator system
 
-
+the system runs on Red Hat Linux
 
 these are the instructions, settings and everything needed to use the formcreator system __UI__ successfully.
 
