@@ -3,7 +3,7 @@ import axios from 'axios'
 import '../CSSfiles/Formcreator.css'
 import Form from '@rjsf/core';
 import { Alert, Checkbox, FormControlLabel } from '@mui/material';
-import { server } from './consts';
+import { server } from '../../consts';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 

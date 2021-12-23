@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import { server } from './consts';
+import { server } from '../../consts';
 
 const Test=({navigation})=>{
 
