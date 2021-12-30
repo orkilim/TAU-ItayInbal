@@ -22,7 +22,6 @@ NODE.JS- https://nodejs.org/en/download/ <br/>
  3. ```cd TAU-ItayInbal```<br/>
  4. ```npm install``` to install all the used dependencies in the project<br/>
  5. ```npm start```<br/>
- 6. enter ```https://(hostname)/test``` to check if the server is up and running 
 
 
 __about consts.js__<br/>
@@ -96,7 +95,7 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 __AVAILABLE URL ROUTES:__
 
-__(hostname)/formcreator__
+__(hostname)/create-form__
 
 goes to the page where you actually create the form
 you load the required schema json from your computer and the optional ui-schema input the name of the research/form when prompt to.
